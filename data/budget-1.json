@@ -12,7 +12,7 @@
     {
       "id": "234",
       "name": "Everyday Expenses",
-      "hidden": false
+      "active": true
     }
   ],
   "payees": [
