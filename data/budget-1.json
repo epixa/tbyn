@@ -1,0 +1,36 @@
+{
+  "accounts": [
+    {
+      "id": "123",
+      "name": "Joint Spend",
+      "type": "checking",
+      "on_budget": true,
+      "closed": true
+    }
+  ],
+  "categories": [
+    {
+      "id": "234",
+      "name": "Everyday Expenses",
+      "hidden": false
+    }
+  ],
+  "payees": [
+    {
+      "id": "345",
+      "name": "Amazon"
+    }
+  ],
+  "transactions": [
+    {
+      "account": "123",
+      "payee": "345",
+      "date": "2016-01-02",
+      "memo": null,
+      "check": null,
+      "outflow": 12345,
+      "inflow": null,
+      "completed": false
+    }
+  ]
+}
