@@ -13,6 +13,7 @@
   "author": "Court Ewing <court@epixa.com>",
   "license": "MIT",
   "dependencies": {
+    "bluebird": "^3.1.1",
     "immutable": "^3.7.6",
     "lodash": "^3.10.1"
   }
