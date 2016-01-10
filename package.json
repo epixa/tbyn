@@ -12,6 +12,9 @@
   },
   "author": "Court Ewing <court@epixa.com>",
   "license": "MIT",
+  "engines": {
+    "node": "5.4.0"
+  },
   "dependencies": {
     "bluebird": "^3.1.1",
     "immutable": "^3.7.6",
