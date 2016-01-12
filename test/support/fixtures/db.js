@@ -15,8 +15,22 @@ export default fromJS({
       "id": "124",
       "name": "Joint Growth",
       "type": "savings",
-      "on_budget": true,
+      "on_budget": false,
       "closed": false
+    },
+    {
+      "id": "125",
+      "name": "Old Spend",
+      "type": "checking",
+      "on_budget": true,
+      "closed": true
+    },
+    {
+      "id": "126",
+      "name": "Old Growth",
+      "type": "savings",
+      "on_budget": false,
+      "closed": true
     }
   ],
   "categories": [

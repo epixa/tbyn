@@ -5,13 +5,12 @@ import chai from 'chai';
 import rfr from 'rfr';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
-
-import immutableChai from './support/helpers/immutable-chai';
+import chaiImmutable from 'chai-immutable';
 
 Promise.longStackTraces();
 
 chai.use(sinonChai);
-chai.use(immutableChai);
+chai.use(chaiImmutable);
 
 global.expect = chai.expect;
 global.sinon = sinon;
