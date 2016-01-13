@@ -1,8 +1,8 @@
 'use strict';
 
-import * as accounts from '../../../lib/data/accounts';
-import accountData from '../../support/fixtures/account-data';
-import db from '../../support/fixtures/db';
+import * as accounts from '../../../../lib/data/accounts';
+import accountData from '../../../support/fixtures/account-data';
+import db from '../../../support/fixtures/db';
 
 describe('data/accounts', function () {
   describe('#all()', function () {
