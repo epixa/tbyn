@@ -1,4 +1,4 @@
-# TBYN - The Budget You Need
+# The Budget You Need (TBYN) [![Circle CI](https://circleci.com/gh/epixa/tbyn.svg?style=svg)](https://circleci.com/gh/epixa/tbyn)
 
 Zero-sum, envelope budgeting written in JavaScript.
 
