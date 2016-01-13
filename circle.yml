@@ -1,0 +1,8 @@
+machine:
+  node:
+    version: 5.4.0
+
+dependencies:
+  pre:
+    - node --version
+    - npm --version
