@@ -1,6 +1,6 @@
 'use strict';
 
-const serializer = requireFromRoot('lib/storage/serializer');
+import * as serializer from '../../../lib/storage/serializer';
 
 describe('storage/serializer', function () {
   describe('#serialize()', function () {
