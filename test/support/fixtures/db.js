@@ -38,6 +38,16 @@ export default fromJS({
       "id": "234",
       "name": "Everyday Expenses",
       "active": true
+    },
+    {
+      "id": "235",
+      "name": "Monthly bills",
+      "active": true
+    },
+    {
+      "id": "236",
+      "name": "Debts",
+      "active": false
     }
   ],
   "payees": [
