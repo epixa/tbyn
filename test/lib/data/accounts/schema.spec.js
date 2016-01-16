@@ -5,7 +5,7 @@ import * as schema from '../../../../lib/data/accounts/schema';
 import accountData, { requiredAccountData } from '../../../support/fixtures/account-data';
 import account from '../../../support/fixtures/account';
 
-describe.only('data/accounts/schema', function () {
+describe('data/accounts/schema', function () {
   describe('#isOnBudget()', function () {
     it('returns true when account is on budget', function () {
       const updatedAccount = account.set('on_budget', true);
