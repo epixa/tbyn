@@ -7,3 +7,8 @@ export default {
   "on_budget": true,
   "closed": false
 };
+
+export const requiredAccountData = {
+  "id": "123",
+  "name": "Joint Spend"
+};
