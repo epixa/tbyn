@@ -22,7 +22,6 @@ describe('data/payees', function () {
       expect(payee).not.to.equal(payeeData);
       expect(payee.get('id')).to.equal(payeeData.id);
       expect(payee.get('name')).to.equal(payeeData.name);
-      expect(payee.get('active')).to.equal(payeeData.active);
     });
     it('returned db includes new payee', function () {
       const [ newDb, payee ] = payees.insert(db, payeeData);
