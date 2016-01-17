@@ -8,7 +8,8 @@
   },
   "main": "index.js",
   "scripts": {
-    "test": "mocha -r test/setup --compilers js:babel-core/register test/**/*.spec.js"
+    "test": "mocha -r test/setup --compilers js:babel-core/register test/**/*.spec.js",
+    "test:dev": "npm test -- --watch"
   },
   "author": "Court Ewing <court@epixa.com>",
   "license": "MIT",
