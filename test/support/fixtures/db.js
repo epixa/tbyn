@@ -66,6 +66,26 @@ export default fromJS({
       "check": "",
       "amount": 12345,
       "completed": false
+    },
+    {
+      "id": "457",
+      "account": "123",
+      "payee": "345",
+      "date": "2015-12-31",
+      "memo": "",
+      "check": "",
+      "amount": 1234,
+      "completed": true
+    },
+    {
+      "id": "458",
+      "account": "124",
+      "payee": "",
+      "date": "2016-01-03",
+      "memo": "",
+      "check": "001",
+      "amount": 123,
+      "completed": true
     }
   ]
 });
