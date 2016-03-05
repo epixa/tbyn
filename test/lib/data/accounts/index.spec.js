@@ -97,7 +97,7 @@ describe('data/accounts', function () {
     it('new db includes updated account', function () {
       const account = accountsDb.last().set('name', 'wat');
       const list = accounts.update(accountsDb, account);
-      const newAccount = list.find(a => a.get('id') === accountData.id);
+      const newAccount = list.find(a => a.get('id') === account.get('id'));
       expect(list).to.include(newAccount);
     });
     it('accounts list in new db does not increase in size', function () {
