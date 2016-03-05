@@ -17,6 +17,13 @@ describe('data/accounts', function () {
     });
   });
 
+  describe('#empty()', function () {
+    it('returns an empty immutable list', function () {
+      const list = accounts.empty();
+      expect(list).to.have.size(0);
+    });
+  });
+
   describe('#onBudget()', function () {
     it('returns only open accounts', function () {
       const list = accounts.onBudget(accountsDb);
