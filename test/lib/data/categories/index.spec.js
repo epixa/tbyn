@@ -5,16 +5,14 @@ import categoryData from '../../../support/fixtures/category-data';
 import db from '../../../support/fixtures/db';
 
 describe('data/categories', function () {
-  describe('#all()', function () {
-    it('returns immutable list of all categories from db', function () {
-      const list = categories.all(db);
-      expect(list).to.have.size(3);
-    });
+  let categoriesDb;
+  beforeEach(function () {
+    categoriesDb = db.get('categories');
   });
 
   describe('#active()', function () {
     it('returns all active categories', function () {
-      const list = categories.active(db);
+      const list = categories.active(categoriesDb);
       expect(list).to.have.size(2);
       expect(list.last().get('active')).to.equal(true);
     });
@@ -22,7 +20,7 @@ describe('data/categories', function () {
 
   describe('#inactive()', function () {
     it('returns all inactive categories', function () {
-      const list = categories.inactive(db);
+      const list = categories.inactive(categoriesDb);
       expect(list).to.have.size(1);
       expect(list.last().get('active')).to.equal(false);
     });
@@ -30,67 +28,58 @@ describe('data/categories', function () {
 
   describe('#insert()', function () {
     it('returns new db', function() {
-      const [ newDb ] = categories.insert(db, categoryData);
-      expect(newDb).not.to.equal(db);
+      const list = categories.insert(categoriesDb, categoryData);
+      expect(list).not.to.equal(categoriesDb);
+    });
+    it('returned db includes new category', function () {
+      const list = categories.insert(categoriesDb, categoryData);
+      const category = list.find(c => c.get('id') === categoryData.id);
+      expect(list).to.include(category);
     });
     it('also returns the new category object', function () {
-      const [ newDb, category ] = categories.insert(db, categoryData);
+      const list = categories.insert(categoriesDb, categoryData);
+      const category = list.find(c => c.get('id') === categoryData.id);
       expect(category).not.to.equal(categoryData);
       expect(category.get('id')).to.equal(categoryData.id);
       expect(category.get('name')).to.equal(categoryData.name);
       expect(category.get('active')).to.equal(categoryData.active);
     });
-    it('returned db includes new category', function () {
-      const [ newDb, category ] = categories.insert(db, categoryData);
-      const list = categories.all(newDb);
-      expect(list).to.include(category);
-    });
   });
 
   describe('#update()', function () {
     it('returns new db', function() {
-      const category = categories.all(db).last().set('name', 'wat');
-      const [ newDb ] = categories.update(db, category);
-      expect(newDb).not.to.equal(db);
-    });
-    it('also returns the updated category object', function () {
-      const category = categories.all(db).last().set('name', 'wat');
-      const [ newDb, newCategory ] = categories.update(db, category);
-      expect(category).to.equal(newCategory);
+      const category = categoriesDb.last().set('name', 'wat');
+      const list = categories.update(categoriesDb, category);
+      expect(list).not.to.equal(categoriesDb);
     });
     it('new db includes updated category', function () {
-      const category = categories.all(db).last().set('name', 'wat');
-      const [ newDb, newCategory ] = categories.update(db, category);
-      const newList = categories.all(newDb);
-      expect(newList).to.include(newCategory);
+      const category = categoriesDb.last().set('name', 'wat');
+      const list = categories.update(categoriesDb, category);
+      const newCategory = list.find(c => c.get('id') === category.get('id'));
+      expect(list).to.include(newCategory);
     });
     it('categories list in new db does not increase in size', function () {
-      const oldList = categories.all(db);
-      const category = oldList.last().set('name', 'wat');
-      const [ newDb ] = categories.update(db, category);
-      const newList = categories.all(newDb);
-      expect(newList).to.have.size(oldList.size);
+      const category = categoriesDb.last().set('name', 'wat');
+      const list = categories.update(categoriesDb, category);
+      expect(list).to.have.size(categoriesDb.size);
     });
   });
 
   describe('#remove()', function () {
     it('returns new db', function () {
-      const category = categories.all(db).last();
-      const newDb = categories.remove(db, category);
-      expect(newDb).not.to.equal(db);
+      const category = categoriesDb.last();
+      const list = categories.remove(categoriesDb, category);
+      expect(list).not.to.equal(categoriesDb);
     });
     it('new db does not include category', function () {
-      const category = categories.all(db).last();
-      const newDb = categories.remove(db, category);
-      const list = categories.all(newDb);
-      expect(newDb).not.to.include(category);
+      const category = categoriesDb.last();
+      const list = categories.remove(categoriesDb, category);
+      expect(list).not.to.include(category);
     });
     it('categories list in new db decreases in size by one', function () {
-      const oldList = categories.all(db);
-      const category = oldList.last();
-      const newDb = categories.remove(db, category);
-      const newList = categories.all(newDb);
-      expect(newList).to.have.size(oldList.size - 1);
+      const category = categoriesDb.last();
+      const list = categories.remove(categoriesDb, category);
+      expect(list).to.have.size(categoriesDb.size - 1);
     });
   });
 });
