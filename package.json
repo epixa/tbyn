@@ -14,8 +14,8 @@
   "author": "Court Ewing <court@epixa.com>",
   "license": "MIT",
   "engines": {
-    "node": "^5.4.0",
-    "npm": "^3.3.12"
+    "node": "^5.7.0",
+    "npm": "^3.6.0"
   },
   "dependencies": {
     "bluebird": "^3.1.1",
