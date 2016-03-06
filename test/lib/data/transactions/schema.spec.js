@@ -124,19 +124,19 @@ describe('data/transactions/schema', function () {
 
   describe('#cast()', function () {
     function callCastWith(overrides) {
-      return schema.cast(defaults(overrides, transactionData), db);
+      return schema.cast(defaults(overrides, transactionData));
     }
 
     it('returns immutable transaction', function () {
-      const transaction = schema.cast(transactionData, db);
+      const transaction = schema.cast(transactionData);
       expect(transaction).to.have.keys(schema.defaults);
     });
     it('transaction amount defaults to 0 if not given a value', function () {
-      const transaction = schema.cast(requiredTransactionData, db);
+      const transaction = schema.cast(requiredTransactionData);
       expect(transaction.get('amount')).to.equal(0);
     });
     it('transaction completed defaults to false if not given a value', function () {
-      const transaction = schema.cast(requiredTransactionData, db);
+      const transaction = schema.cast(requiredTransactionData);
       expect(transaction.get('completed')).to.equal(false);
     });
     it('allows overiding of defaults', function () {
@@ -149,7 +149,7 @@ describe('data/transactions/schema', function () {
         "amount": 12345,
         "completed": true
       };
-      const transaction = schema.cast(defaults(overrides, transactionData), db);
+      const transaction = schema.cast(defaults(overrides, transactionData));
       expect(transaction.get('account')).to.equal(overrides.account);
       expect(transaction.get('payee')).to.equal(overrides.payee);
       expect(transaction.get('date')).to.equal(overrides.date);
@@ -163,11 +163,9 @@ describe('data/transactions/schema', function () {
       expect(() => callCastWith({ id: '' })).to.throw(Error);
     });
     it('throws if given invalid account', function () {
-      expect(() => callCastWith({ account: 'non-existent-id' })).to.throw(Error);
       expect(() => callCastWith({ account: 123 })).to.throw(Error);
     });
     it('throws if given invalid payee', function () {
-      expect(() => callCastWith({ payee: 'non-existent-id' })).to.throw(Error);
       expect(() => callCastWith({ payee: 345 })).to.throw(Error);
     });
     it('throws if given invalid date', function () {

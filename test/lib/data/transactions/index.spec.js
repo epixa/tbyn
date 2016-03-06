@@ -6,16 +6,14 @@ import transactionData from '../../../support/fixtures/transaction-data';
 import db from '../../../support/fixtures/db';
 
 describe('data/transactions', function () {
-  describe('#all()', function () {
-    it('returns immutable list of all transactions from db', function () {
-      const list = transactions.all(db);
-      expect(list).to.have.size(3);
-    });
+  let transactionsDb;
+  beforeEach(function () {
+    transactionsDb = db.get('transactions');
   });
 
   describe('#completed()', function () {
     it('returns all completed transactions', function () {
-      const list = transactions.completed(db);
+      const list = transactions.completed(transactionsDb);
       expect(list).to.have.size(2);
       expect(list.last().get('completed')).to.equal(true);
     });
@@ -23,7 +21,7 @@ describe('data/transactions', function () {
 
   describe('#completedForAccount()', function () {
     it('returns all completed transactions for an account', function () {
-      const list = transactions.completedForAccount(db, account);
+      const list = transactions.completedForAccount(transactionsDb, account);
       expect(list).to.have.size(1);
       expect(list.last().get('completed')).to.equal(true);
       expect(list.last().get('account')).to.equal(account.get('id'));
@@ -32,7 +30,7 @@ describe('data/transactions', function () {
 
   describe('#forAccount()', function () {
     it('returns all transactions for an account', function () {
-      const list = transactions.forAccount(db, account);
+      const list = transactions.forAccount(transactionsDb, account);
       expect(list).to.have.size(2);
       expect(list.last().get('completed')).to.equal(true);
       expect(list.last().get('account')).to.equal(account.get('id'));
@@ -41,11 +39,17 @@ describe('data/transactions', function () {
 
   describe('#insert()', function () {
     it('returns new db', function() {
-      const [ newDb ] = transactions.insert(db, transactionData);
-      expect(newDb).not.to.equal(db);
+      const list = transactions.insert(transactionsDb, transactionData);
+      expect(list).not.to.equal(transactionsDb);
+    });
+    it('returned db includes new transaction', function () {
+      const list = transactions.insert(transactionsDb, transactionData);
+      const transaction = list.find(t => t.get('id') === transactionData.id);
+      expect(list).to.include(transaction);
     });
     it('also returns the new transaction object', function () {
-      const [ newDb, transaction ] = transactions.insert(db, transactionData);
+      const list = transactions.insert(transactionsDb, transactionData);
+      const transaction = list.find(t => t.get('id') === transactionData.id);
       expect(transaction).not.to.equal(transactionData);
       expect(transaction.get('id')).to.equal(transactionData.id);
       expect(transaction.get('account')).to.equal(transactionData.account);
@@ -56,57 +60,42 @@ describe('data/transactions', function () {
       expect(transaction.get('amount')).to.equal(transactionData.amount);
       expect(transaction.get('completed')).to.equal(transactionData.completed);
     });
-    it('returned db includes new transaction', function () {
-      const [ newDb, transaction ] = transactions.insert(db, transactionData);
-      const list = transactions.all(newDb);
-      expect(list).to.include(transaction);
-    });
   });
 
   describe('#update()', function () {
     it('returns new db', function() {
-      const transaction = transactions.all(db).last().set('memo', 'wat');
-      const [ newDb ] = transactions.update(db, transaction);
-      expect(newDb).not.to.equal(db);
-    });
-    it('also returns the updated transaction object', function () {
-      const transaction = transactions.all(db).last().set('memo', 'wat');
-      const [ newDb, newTransaction ] = transactions.update(db, transaction);
-      expect(transaction).to.equal(newTransaction);
+      const transaction = transactionsDb.last().set('memo', 'wat');
+      const list = transactions.update(transactionsDb, transaction);
+      expect(list).not.to.equal(transactionsDb);
     });
     it('new db includes updated transaction', function () {
-      const transaction = transactions.all(db).last().set('memo', 'wat');
-      const [ newDb, newTransaction ] = transactions.update(db, transaction);
-      const newList = transactions.all(newDb);
-      expect(newList).to.include(newTransaction);
+      const transaction = transactionsDb.last().set('memo', 'wat');
+      const list = transactions.update(transactionsDb, transaction);
+      const newTransaction = list.find(t => t.get('id') === transaction.get('id'));
+      expect(list).to.include(newTransaction);
     });
     it('transactions list in new db does not increase in size', function () {
-      const oldList = transactions.all(db);
-      const transaction = oldList.last().set('memo', 'wat');
-      const [ newDb ] = transactions.update(db, transaction);
-      const newList = transactions.all(newDb);
-      expect(newList).to.have.size(oldList.size);
+      const transaction = transactionsDb.last().set('memo', 'wat');
+      const list = transactions.update(transactionsDb, transaction);
+      expect(list).to.have.size(transactionsDb.size);
     });
   });
 
   describe('#remove()', function () {
     it('returns new db', function () {
-      const transaction = transactions.all(db).last();
-      const newDb = transactions.remove(db, transaction);
-      expect(newDb).not.to.equal(db);
+      const transaction = transactionsDb.last();
+      const list = transactions.remove(transactionsDb, transaction);
+      expect(list).not.to.equal(transactionsDb);
     });
     it('new db does not include transaction', function () {
-      const transaction = transactions.all(db).last();
-      const newDb = transactions.remove(db, transaction);
-      const list = transactions.all(newDb);
-      expect(newDb).not.to.include(transaction);
+      const transaction = transactionsDb.last();
+      const list = transactions.remove(transactionsDb, transaction);
+      expect(list).not.to.include(transaction);
     });
     it('transactions list in new db decreases in size by one', function () {
-      const oldList = transactions.all(db);
-      const transaction = oldList.last();
-      const newDb = transactions.remove(db, transaction);
-      const newList = transactions.all(newDb);
-      expect(newList).to.have.size(oldList.size - 1);
+      const transaction = transactionsDb.last();
+      const list = transactions.remove(transactionsDb, transaction);
+      expect(list).to.have.size(transactionsDb.size - 1);
     });
   });
 });
