@@ -10,13 +10,6 @@ describe('data/accounts', function () {
     accountsDb = db.get('accounts');
   });
 
-  describe('#all()', function () {
-    it('returns immutable list of all accounts from db', function () {
-      const list = accounts.all(db);
-      expect(list).to.have.size(4);
-    });
-  });
-
   describe('#empty()', function () {
     it('returns an empty immutable list', function () {
       const list = accounts.empty();

@@ -10,13 +10,6 @@ describe('data/payees', function () {
     payeesDb = db.get('payees');
   });
 
-  describe('#all()', function () {
-    it('returns immutable list of all payees from db', function () {
-      const list = payees.all(db);
-      expect(list).to.have.size(1);
-    });
-  });
-
   describe('#insert()', function () {
     it('returns new db', function() {
       const list = payees.insert(payeesDb, payeeData);
