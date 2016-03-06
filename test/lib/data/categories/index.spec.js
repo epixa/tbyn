@@ -10,6 +10,13 @@ describe('data/categories', function () {
     categoriesDb = db.get('categories');
   });
 
+  describe('#empty()', function () {
+    it('returns an empty immutable list', function () {
+      const list = categories.empty();
+      expect(list).to.have.size(0);
+    });
+  });
+
   describe('#active()', function () {
     it('returns all active categories', function () {
       const list = categories.active(categoriesDb);
