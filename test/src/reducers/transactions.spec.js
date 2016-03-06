@@ -2,8 +2,8 @@
 
 import { fromJS } from 'immutable';
 
-import reducer from '../../../../lib/data/transactions/reducer';
-import data from '../../../support/fixtures/transaction-data';
+import reducer from '../../../src/reducers/transactions';
+import data from '../../support/fixtures/transaction-data';
 
 describe('data/transactions/reducer', function () {
   context('ADD_TRANSACTION', function () {

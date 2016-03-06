@@ -2,8 +2,8 @@
 
 import { fromJS } from 'immutable';
 
-import reducer from '../../../../lib/data/categories/reducer';
-import data, { requiredCategoryData } from '../../../support/fixtures/category-data';
+import reducer from '../../../src/reducers/categories';
+import data, { requiredCategoryData } from '../../support/fixtures/category-data';
 
 describe('data/categories/reducer', function () {
   context('ADD_CATEGORY', function () {

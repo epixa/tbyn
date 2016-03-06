@@ -1,6 +1,6 @@
 'use strict';
 
-import { empty, insert, update, remove } from './index';
+import { empty, insert, update, remove } from '../../lib/data/transactions';
 
 export default function transactionsReducer(state = empty(), action) {
   switch (action.type) {

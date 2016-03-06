@@ -2,8 +2,8 @@
 
 import { fromJS } from 'immutable';
 
-import reducer from '../../../../lib/data/payees/reducer';
-import data, { requiredPayeeData } from '../../../support/fixtures/payee-data';
+import reducer from '../../../src/reducers/payees';
+import data, { requiredPayeeData } from '../../support/fixtures/payee-data';
 
 describe('data/payees/reducer', function () {
   context('ADD_PAYEE', function () {

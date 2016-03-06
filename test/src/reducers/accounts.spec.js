@@ -2,8 +2,8 @@
 
 import { fromJS } from 'immutable';
 
-import reducer from '../../../../lib/data/accounts/reducer';
-import accountData, { requiredAccountData } from '../../../support/fixtures/account-data';
+import reducer from '../../../src/reducers/accounts';
+import accountData, { requiredAccountData } from '../../support/fixtures/account-data';
 
 describe('data/accounts/reducer', function () {
   context('ADD_ACCOUNT', function () {

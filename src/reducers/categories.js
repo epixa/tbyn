@@ -1,6 +1,6 @@
 'use strict';
 
-import { empty, insert, update, remove } from './index';
+import { empty, insert, update, remove } from '../../lib/data/categories';
 
 export default function categoriesReducer(state = empty(), action) {
   switch (action.type) {
