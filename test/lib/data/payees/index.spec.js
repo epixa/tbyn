@@ -5,6 +5,11 @@ import payeeData from '../../../support/fixtures/payee-data';
 import db from '../../../support/fixtures/db';
 
 describe('data/payees', function () {
+  let payeesDb;
+  beforeEach(function () {
+    payeesDb = db.get('payees');
+  });
+
   describe('#all()', function () {
     it('returns immutable list of all payees from db', function () {
       const list = payees.all(db);
@@ -14,66 +19,57 @@ describe('data/payees', function () {
 
   describe('#insert()', function () {
     it('returns new db', function() {
-      const [ newDb ] = payees.insert(db, payeeData);
-      expect(newDb).not.to.equal(db);
+      const list = payees.insert(payeesDb, payeeData);
+      expect(list).not.to.equal(payeesDb);
+    });
+    it('returned db includes new payee', function () {
+      const list = payees.insert(payeesDb, payeeData);
+      const payee = list.find(p => p.get('id') === payeeData.id);
+      expect(list).to.include(payee);
     });
     it('also returns the new payee object', function () {
-      const [ newDb, payee ] = payees.insert(db, payeeData);
+      const list = payees.insert(payeesDb, payeeData);
+      const payee = list.find(p => p.get('id') === payeeData.id);
       expect(payee).not.to.equal(payeeData);
       expect(payee.get('id')).to.equal(payeeData.id);
       expect(payee.get('name')).to.equal(payeeData.name);
-    });
-    it('returned db includes new payee', function () {
-      const [ newDb, payee ] = payees.insert(db, payeeData);
-      const list = payees.all(newDb);
-      expect(list).to.include(payee);
     });
   });
 
   describe('#update()', function () {
     it('returns new db', function() {
-      const payee = payees.all(db).last().set('name', 'wat');
-      const [ newDb ] = payees.update(db, payee);
-      expect(newDb).not.to.equal(db);
-    });
-    it('also returns the updated payee object', function () {
-      const payee = payees.all(db).last().set('name', 'wat');
-      const [ newDb, newCategory ] = payees.update(db, payee);
-      expect(payee).to.equal(newCategory);
+      const payee = payeesDb.last().set('name', 'wat');
+      const list = payees.update(payeesDb, payee);
+      expect(list).not.to.equal(payeesDb);
     });
     it('new db includes updated payee', function () {
-      const payee = payees.all(db).last().set('name', 'wat');
-      const [ newDb, newCategory ] = payees.update(db, payee);
-      const newList = payees.all(newDb);
-      expect(newList).to.include(newCategory);
+      const payee = payeesDb.last().set('name', 'wat');
+      const list = payees.update(payeesDb, payee);
+      const newPayee = list.find(p => p.get('id') === payee.get('id'));
+      expect(list).to.include(newPayee);
     });
     it('payees list in new db does not increase in size', function () {
-      const oldList = payees.all(db);
-      const payee = oldList.last().set('name', 'wat');
-      const [ newDb ] = payees.update(db, payee);
-      const newList = payees.all(newDb);
-      expect(newList).to.have.size(oldList.size);
+      const payee = payeesDb.last().set('name', 'wat');
+      const list = payees.update(payeesDb, payee);
+      expect(list).to.have.size(payeesDb.size);
     });
   });
 
   describe('#remove()', function () {
     it('returns new db', function () {
-      const payee = payees.all(db).last();
-      const newDb = payees.remove(db, payee);
-      expect(newDb).not.to.equal(db);
+      const payee = payeesDb.last();
+      const list = payees.remove(payeesDb, payee);
+      expect(list).not.to.equal(payeesDb);
     });
     it('new db does not include payee', function () {
-      const payee = payees.all(db).last();
-      const newDb = payees.remove(db, payee);
-      const list = payees.all(newDb);
-      expect(newDb).not.to.include(payee);
+      const payee = payeesDb.last();
+      const list = payees.remove(payeesDb, payee);
+      expect(list).not.to.include(payee);
     });
     it('payees list in new db decreases in size by one', function () {
-      const oldList = payees.all(db);
-      const payee = oldList.last();
-      const newDb = payees.remove(db, payee);
-      const newList = payees.all(newDb);
-      expect(newList).to.have.size(oldList.size - 1);
+      const payee = payeesDb.last();
+      const list = payees.remove(payeesDb, payee);
+      expect(list).to.have.size(payeesDb.size - 1);
     });
   });
 });
