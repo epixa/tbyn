@@ -11,6 +11,13 @@ describe('data/transactions', function () {
     transactionsDb = db.get('transactions');
   });
 
+  describe('#empty()', function () {
+    it('returns an empty immutable list', function () {
+      const list = transactions.empty();
+      expect(list).to.have.size(0);
+    });
+  });
+
   describe('#completed()', function () {
     it('returns all completed transactions', function () {
       const list = transactions.completed(transactionsDb);
