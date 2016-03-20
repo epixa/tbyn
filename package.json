@@ -8,6 +8,7 @@
   },
   "main": "index.js",
   "scripts": {
+    "build": "webpack",
     "test": "mocha -r test/setup --compilers js:babel-core/register test/**/*.spec.js",
     "test:dev": "npm test -- --watch"
   },
