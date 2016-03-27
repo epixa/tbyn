@@ -1,11 +1,18 @@
 'use strict';
 
 import React from 'react';
+import { connect } from 'react-redux';
 
-const AddAccountButton = () => (
-  <div>
-    AddAccountButton
-  </div>
+const AddAccountButton = ({ onClick }) => (
+  <button onClick={onClick}>
+    Add Account
+  </button>
 );
 
-export default AddAccountButton;
+const mapDispatchProps = dispatch => ({
+  onClick() {
+    alert('add account');
+  }
+});
+
+export default connect(null, mapDispatchProps)(AddAccountButton);
