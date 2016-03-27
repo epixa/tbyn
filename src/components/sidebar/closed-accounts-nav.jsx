@@ -5,10 +5,11 @@ import { connect } from 'react-redux';
 
 import { AccountsHeader, AccountsList } from './accounts-nav';
 import { closed } from '../../../lib/data/accounts';
+import { amountInAccounts } from '../../../lib/data/transactions';
 
 const ClosedAccountsHeader = (() => {
   const mapStateProps = state => ({
-    total: closed(state.accounts).size,
+    total: amountInAccounts(state.transactions, closed(state.accounts)),
     type: 'Closed'
   });
   const mapDispatchProps = (dispatch, ownProps) => ({

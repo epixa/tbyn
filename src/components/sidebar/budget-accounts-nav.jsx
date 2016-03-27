@@ -5,10 +5,11 @@ import { connect } from 'react-redux';
 
 import { AccountsHeader, AccountsList } from './accounts-nav';
 import { onBudget } from '../../../lib/data/accounts';
+import { amountInAccounts } from '../../../lib/data/transactions';
 
 const BudgetAccountsHeader = (() => {
   const mapStateProps = state => ({
-    total: onBudget(state.accounts).size,
+    total: amountInAccounts(state.transactions, onBudget(state.accounts)),
     type: 'On Budget'
   });
   const mapDispatchProps = (dispatch, ownProps) => ({

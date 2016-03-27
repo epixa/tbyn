@@ -1,5 +1,7 @@
 'use strict';
 
+import { fromJS } from 'immutable';
+
 import * as transactions from '../../../../lib/data/transactions';
 import account from '../../../support/fixtures/account';
 import transactionData from '../../../support/fixtures/transaction-data';
@@ -41,6 +43,30 @@ describe('data/transactions', function () {
       expect(list).to.have.size(2);
       expect(list.last().get('completed')).to.equal(true);
       expect(list.last().get('account')).to.equal(account.get('id'));
+    });
+  });
+
+  describe('#amountInAccount()', function () {
+    it('returns 0 if there are no transactions for the given account', function () {
+      const amount = transactions.amountInAccount(fromJS([]), account);
+      expect(amount).to.equal(0);
+    });
+    it('returns total amount of transactions for the given account', function () {
+      const accountsDb = db.get('accounts');
+      const amount = transactions.amountInAccount(transactionsDb, account);
+      expect(amount).to.equal(13579);
+    });
+  });
+
+  describe('#amountInAccounts()', function () {
+    it('returns 0 if there are no accounts', function () {
+      const amount = transactions.amountInAccounts(transactionsDb, fromJS([]));
+      expect(amount).to.equal(0);
+    });
+    it('returns total amount of transactions for all given accounts', function () {
+      const accountsDb = db.get('accounts');
+      const amount = transactions.amountInAccounts(transactionsDb, accountsDb);
+      expect(amount).to.equal(13702);
     });
   });
 
