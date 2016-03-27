@@ -3,6 +3,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { amountInAccount } from '../../../lib/data/transactions';
+
 const NavLink = ({ onClick, name, total }) => (
   <li onClick={onClick}>
     { name }
@@ -11,22 +13,22 @@ const NavLink = ({ onClick, name, total }) => (
 );
 
 const AccountLink = (() => {
-  const mapDispatchProps = (dispatch, ownProps) => ({
+  const mapStateProps = (state, { account }) => ({
+    total: amountInAccount(state.transactions, account),
+    ...account.toJS()
+  });
+  const mapDispatchProps = (dispatch, { id, name }) => ({
     onClick() {
-      const { id, name } = ownProps;
       alert(`clicked account ${name} (${id})`);
     }
   });
-  return connect(null, mapDispatchProps)(NavLink);
+  return connect(mapStateProps, mapDispatchProps)(NavLink);
 })();
 
 export const AccountsList = ({ accounts }) => (
   <ul>
     {accounts.map(account =>
-      <AccountLink
-        key={account.id}
-        {...account}
-      />
+      <AccountLink key={account.get('id')} account={account} />
     )}
   </ul>
 );

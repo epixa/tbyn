@@ -22,7 +22,7 @@ const BudgetAccountsHeader = (() => {
 
 const BudgetAccountsList = (() => {
   const mapStateProps = state => ({
-    accounts: onBudget(state.accounts).toJS()
+    accounts: onBudget(state.accounts)
   });
   return connect(mapStateProps, null)(AccountsList);
 })();

@@ -22,7 +22,7 @@ const ClosedAccountsHeader = (() => {
 
 const ClosedAccountsList = (() => {
   const mapStateProps = state => ({
-    accounts: closed(state.accounts).toJS()
+    accounts: closed(state.accounts)
   });
   return connect(mapStateProps, null)(AccountsList);
 })();
