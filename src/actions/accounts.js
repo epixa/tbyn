@@ -1,11 +1,18 @@
 'use strict';
 
+export const SHOW_ADD_ACCOUNT = 'SHOW_ADD_ACCOUNT';
 export const RECEIVE_ACCOUNTS = 'RECEIVE_ACCOUNTS';
 export const SELECT_ACCOUNT = 'SELECT_ACCOUNT';
 export const CREATE_ACCOUNT = 'CREATE_ACCOUNT';
 export const CLOSE_ACCOUNT = 'CLOSE_ACCOUNT';
 export const REOPEN_ACCOUNT = 'REOPEN_ACCOUNT';
 export const DELETE_ACCOUNT = 'DELETE_ACCOUNT';
+
+export function showAddAccount() {
+  return {
+    type: SHOW_ADD_ACCOUNT
+  };
+}
 
 export function receiveAccounts(accounts) {
   return {
@@ -21,9 +28,10 @@ export function selectAccount(account) {
   };
 }
 
+let id = 0;
 export function createAccount(account) {
   return {
-    account,
+    account: { id: String(++id), ...account },
     type: CREATE_ACCOUNT
   };
 }

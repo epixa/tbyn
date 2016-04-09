@@ -6,13 +6,13 @@ import reducer from '../../../src/reducers/accounts';
 import accountData, { requiredAccountData } from '../../support/fixtures/account-data';
 
 describe('data/accounts/reducer', function () {
-  context('ADD_ACCOUNT', function () {
+  context('CREATE_ACCOUNT', function () {
     it('to create new account in list', function () {
       const stateBefore = undefined;
       const stateAfter = fromJS([ accountData ]);
       const state = reducer(stateBefore, {
-        data: requiredAccountData,
-        type: 'ADD_ACCOUNT'
+        account: requiredAccountData,
+        type: 'CREATE_ACCOUNT'
       });
       expect(state).to.equal(stateAfter);
     });
