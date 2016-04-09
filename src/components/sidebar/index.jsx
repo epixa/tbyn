@@ -3,19 +3,19 @@
 import React from 'react';
 
 import SectionNav from '../navigation/section';
-import BudgetAccountsNav from './budget-accounts-nav';
-import OffBudgetAccountsNav from './off-budget-accounts-nav';
-import ClosedAccountsNav from './closed-accounts-nav';
-import ToggleSidebarButton from './toggle-sidebar-button';
+import BudgetAccountNav from '../../containers/navigation/budget-account';
+import OffBudgetAccountNav from '../../containers/navigation/off-budget-account';
+import ClosedAccountNav from '../../containers/navigation/closed-account';
+import ToggleSidebar from '../../containers/sidebar/toggle';
 import AddAccount from '../../containers/add-account';
 
 const Sidebar = () => (
   <div>
     <SectionNav />
-    <BudgetAccountsNav />
-    <OffBudgetAccountsNav />
-    <ClosedAccountsNav />
-    <ToggleSidebarButton />
+    <BudgetAccountNav/>
+    <OffBudgetAccountNav />
+    <ClosedAccountNav />
+    <ToggleSidebar />
     <AddAccount />
   </div>
 );
