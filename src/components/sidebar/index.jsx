@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import SectionNav from './section-nav';
+import SectionNav from '../navigation/section';
 import BudgetAccountsNav from './budget-accounts-nav';
 import OffBudgetAccountsNav from './off-budget-accounts-nav';
 import ClosedAccountsNav from './closed-accounts-nav';
