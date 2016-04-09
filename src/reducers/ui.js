@@ -2,11 +2,7 @@
 
 import { CREATE_ACCOUNT, SHOW_ADD_ACCOUNT } from '../actions/accounts';
 
-const defaultState = {
-  showAddAccount: false
-};
-
-export default function uiReducer(state = defaultState, action) {
+export default function uiReducer(state = defaultState(), action) {
   switch (action.type) {
     case SHOW_ADD_ACCOUNT:
       return {
@@ -23,3 +19,8 @@ export default function uiReducer(state = defaultState, action) {
   }
 }
 
+function defaultState() {
+  return {
+    showAddAccount: false
+  };
+}

@@ -6,9 +6,8 @@ import SectionNav from './section-nav';
 import BudgetAccountsNav from './budget-accounts-nav';
 import OffBudgetAccountsNav from './off-budget-accounts-nav';
 import ClosedAccountsNav from './closed-accounts-nav';
-import AddAccountButton from './add-account-button';
-import AddAccountForm from '../add-account';
 import ToggleSidebarButton from './toggle-sidebar-button';
+import AddAccount from '../../containers/add-account';
 
 const Sidebar = () => (
   <div>
@@ -16,9 +15,8 @@ const Sidebar = () => (
     <BudgetAccountsNav />
     <OffBudgetAccountsNav />
     <ClosedAccountsNav />
-    <AddAccountButton />
-    <AddAccountForm />
     <ToggleSidebarButton />
+    <AddAccount />
   </div>
 );
 
