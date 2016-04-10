@@ -3,7 +3,7 @@
 import React, { PropTypes } from 'react';
 
 const AddAccountForm = ({
-  fields: { name, on_budget },
+  fields: { name, on_budget, type },
   handleSubmit,
   submitting,
   submitFailed
@@ -16,6 +16,25 @@ const AddAccountForm = ({
       <input type="text" {...name}/>
     </label>
     {name.touched && name.error && <div>{name.error}</div>}
+
+    <label>
+      Type
+      <select {...type}>
+        <option value="">Select an Account Type...</option>
+        <option value="checking">Checking</option>
+        <option value="savings">Savings</option>
+        <option value="credit_card">Credit Card</option>
+        <option value="cash">Cash</option>
+        <option value="other_credit">Line of Credit or Other Credit</option>
+        <option value="paypal">Paypal</option>
+        <option value="merchant">Merchant Account</option>
+        <option value="investment">Investment Account</option>
+        <option value="mortgage">Mortgage</option>
+        <option value="other_asset">Other Asset (House, Car, etc)</option>
+        <option value="other_loan">Other Loan or Liability</option>
+      </select>
+    </label>
+    {type.touched && type.error && <div>{type.error}</div>}
 
     <label>
       <input type="radio" name="on_budget" {...on_budget} value="1" checked={on_budget.value === '1'}/>
