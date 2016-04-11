@@ -42,4 +42,17 @@ describe('src/reducers/add-account', function () {
       expect(state).to.deep.equal(stateAfter);
     });
   });
+
+  context('CHANGE_ADD_ACCOUNT_TYPE', function () {
+    it('sets newAccountType', function () {
+      const action = { type: 'CHANGE_ADD_ACCOUNT_TYPE', newAccountType: 'savings' };
+      const stateBefore = {};
+      const stateAfter = { newAccountType: 'savings' };
+
+      deepFreeze(action, stateBefore);
+
+      const state = reducer(stateBefore, action);
+      expect(state).to.deep.equal(stateAfter);
+    });
+  });
 });

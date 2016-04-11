@@ -6,8 +6,11 @@ const AddAccountForm = ({
   fields: { name, on_budget, type },
   handleSubmit,
   submitting,
-  submitFailed
-}) => (
+  submitFailed,
+  typeChangeHandler,
+  budgetRecommended,
+  offBudgetRecommended
+}) => {return (
   <form onSubmit={handleSubmit}>
     {submitFailed && <div>There was an error with your form submission</div>}
 
@@ -19,7 +22,7 @@ const AddAccountForm = ({
 
     <label>
       Type
-      <select {...type}>
+      <select {...type} onChange={typeChangeHandler(type, on_budget)}>
         <option value="">Select an Account Type...</option>
         <option value="checking">Checking</option>
         <option value="savings">Savings</option>
@@ -34,17 +37,17 @@ const AddAccountForm = ({
         <option value="other_loan">Other Loan or Liability</option>
       </select>
     </label>
-    {type.touched && type.error && <div>{type.error}</div>}
+    {submitFailed && type.touched && type.error && <div>{type.error}</div>}
 
     <label>
       <input type="radio" name="on_budget" {...on_budget} value="1" checked={on_budget.value === '1'}/>
       Budget account
-      <span> - This account should affect my budget</span>
+      <span> - This account should affect my budget {budgetRecommended && <span>(recommended)</span>}</span>
     </label>
     <label>
       <input type="radio" name="on_budget" {...on_budget} value="0" checked={on_budget.value === '0'}/>
       Off-Budget
-      <span> - This account should not affect my budget</span>
+      <span> - This account should not affect my budget {offBudgetRecommended && <span>(recommended)</span>}</span>
     </label>
     {on_budget.touched && on_budget.error && <div>{on_budget.error}</div>}
 
@@ -52,12 +55,15 @@ const AddAccountForm = ({
       {submitting ? <span>Submitting...</span> : <span>Submit</span>}
     </button>
   </form>
-);
+)};
 
 AddAccountForm.propTypes = {
   fields: PropTypes.object.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  submitting: PropTypes.bool.isRequired
+  submitting: PropTypes.bool.isRequired,
+  typeChangeHandler: PropTypes.func.isRequired,
+  budgetRecommended: PropTypes.bool,
+  offBudgetRecommended: PropTypes.bool
 };
 
 export default AddAccountForm;

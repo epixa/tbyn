@@ -3,7 +3,7 @@
 import { reduxForm } from 'redux-form';
 
 import AddAccountForm from '../../components/add-account/form';
-import { createAccount, hideAddAccount } from '../../actions/accounts';
+import { changeAddAccountType, createAccount } from '../../actions/accounts';
 
 const validate = ({ name, on_budget, type }) => {
   const errors = {};
@@ -17,15 +17,49 @@ const validate = ({ name, on_budget, type }) => {
   return errors;
 };
 
-const mapDispatchProps = dispatch => ({
+const mapStateProps = (state, props) => {
+  const onBudgetValue = toOnBudgetValue(state.addAccount.newAccountType);
+  return {
+    budgetRecommended: onBudgetValue === '1',
+    offBudgetRecommended: onBudgetValue === '0'
+  };
+};
+
+const mapDispatchProps = (dispatch, props) => ({
+  typeChangeHandler(type, onBudget) {
+    return event => {
+      const newType = event.target.value;
+
+      onBudget.onChange(toOnBudgetValue(newType));
+      type.onChange(event);
+
+      dispatch(changeAddAccountType(newType));
+    };
+  },
+
   onSubmit(data) {
     data.on_budget = Boolean(Number(data.on_budget));
     dispatch(createAccount(data));
   }
 });
 
+const toOnBudgetValue = (type) => {
+  if (!type) return '';
+  return budgetTypes.includes(type) ? '1' : '0';
+};
+
+const budgetTypes = [
+  'checking',
+  'savings',
+  'credit_card',
+  'cash',
+  'other_credit',
+  'paypal',
+  'merchant'
+];
+
 export default reduxForm({
   form: 'add-account',
   fields: [ 'name', 'on_budget', 'type' ],
   validate
-}, null, mapDispatchProps)(AddAccountForm);
+}, mapStateProps, mapDispatchProps)(AddAccountForm);
