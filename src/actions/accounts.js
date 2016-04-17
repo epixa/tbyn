@@ -1,6 +1,6 @@
 'use strict';
 
-export const HIDE_ADD_ACCOUNT = 'HIDE_ADD_ACCOUNT';
+export const CANCEL_ADD_ACCOUNT = 'CANCEL_ADD_ACCOUNT';
 export const SHOW_ADD_ACCOUNT = 'SHOW_ADD_ACCOUNT';
 export const CHANGE_ADD_ACCOUNT_TYPE = 'CHANGE_ADD_ACCOUNT_TYPE';
 export const RECEIVE_ACCOUNTS = 'RECEIVE_ACCOUNTS';
@@ -10,9 +10,9 @@ export const CLOSE_ACCOUNT = 'CLOSE_ACCOUNT';
 export const REOPEN_ACCOUNT = 'REOPEN_ACCOUNT';
 export const DELETE_ACCOUNT = 'DELETE_ACCOUNT';
 
-export function hideAddAccount() {
+export function cancelAddAccount() {
   return {
-    type: HIDE_ADD_ACCOUNT
+    type: CANCEL_ADD_ACCOUNT
   };
 }
 

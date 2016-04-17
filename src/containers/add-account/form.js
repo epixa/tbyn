@@ -4,7 +4,7 @@ import moment from 'moment';
 import { reduxForm } from 'redux-form';
 
 import AddAccountForm from '../../components/add-account/form';
-import { changeAddAccountType, createAccount } from '../../actions/accounts';
+import { cancelAddAccount, changeAddAccountType, createAccount } from '../../actions/accounts';
 
 const validate = ({ balance, date, name, on_budget, type }) => {
   const errors = {};
@@ -46,6 +46,10 @@ const mapDispatchProps = (dispatch, props) => ({
 
       dispatch(changeAddAccountType(newType));
     };
+  },
+
+  handleCancel() {
+    dispatch(cancelAddAccount());
   },
 
   onSubmit(formData) {

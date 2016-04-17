@@ -3,11 +3,13 @@
 import {
   CREATE_ACCOUNT,
   SHOW_ADD_ACCOUNT,
+  CANCEL_ADD_ACCOUNT,
   CHANGE_ADD_ACCOUNT_TYPE
 } from '../actions/accounts';
 
 const DEFAULT_STATE = {
-  active: false
+  active: false,
+  newAccountType: null
 };
 
 const addAccountReducer = (state = DEFAULT_STATE, action) => {
@@ -17,10 +19,17 @@ const addAccountReducer = (state = DEFAULT_STATE, action) => {
         ...state,
         active: true
       };
+    case CANCEL_ADD_ACCOUNT:
+      return {
+        ...state,
+        active: false,
+        newAccountType: null
+      };
     case CREATE_ACCOUNT:
       return {
         ...state,
-        active: false
+        active: false,
+        newAccountType: null
       };
     case CHANGE_ADD_ACCOUNT_TYPE:
       return {

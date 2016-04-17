@@ -8,6 +8,7 @@ import React, { PropTypes } from 'react';
 
 const AddAccountForm = ({
   fields: { balance, date, name, on_budget, type },
+  handleCancel,
   handleSubmit,
   submitting,
   submitFailed,
@@ -69,6 +70,9 @@ const AddAccountForm = ({
     </label>
     {on_budget.touched && on_budget.error && <div>{on_budget.error}</div>}
 
+    <button onClick={handleCancel}>
+      Cancel
+    </button>
     <button type="submit" disabled={submitting}>
       {submitting ? <span>Submitting...</span> : <span>Submit</span>}
     </button>
@@ -77,6 +81,7 @@ const AddAccountForm = ({
 
 AddAccountForm.propTypes = {
   fields: PropTypes.object.isRequired,
+  handleCancel: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   submitting: PropTypes.bool.isRequired,
   dateChangeHandler: PropTypes.func.isRequired,
