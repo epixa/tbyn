@@ -1,5 +1,7 @@
 'use strict';
 
+import moment from 'moment';
+
 import { STARTING_BALANCE_ID } from '../../lib/data/payees';
 import { empty, insert, update, remove } from '../../lib/data/transactions';
 
@@ -30,22 +32,10 @@ export function defaultBalance(state, data) {
   return insert(state, transaction);
 }
 
-function dateForStore(date = new Date()) {
-  const { day, month, year } = dateObj(date);
-  return `${year}-${dateSegment(month)}-${dateSegment(day)}`;
-}
-
-function dateObj(date) {
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1; // month is 0 indexed
-  const day = date.getDate();
-  return { day, month, year };
+function dateForStore(date) {
+  return moment(date).format('YYYY-MM-DD');
 }
 
 function toCents(amount) {
-  return parseFloat(amount).toFixed(2) * 100;
-}
-
-function dateSegment(val) {
-  return val < 10 ? `0${val}` : `${val}`;
+  return Math.round(parseFloat(amount) * 100);
 }

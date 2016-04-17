@@ -1,5 +1,6 @@
 'use strict';
 
+import moment from 'moment';
 import { reduxForm } from 'redux-form';
 
 import AddAccountForm from '../../components/add-account/form';
@@ -30,6 +31,12 @@ const mapStateProps = (state, props) => {
 };
 
 const mapDispatchProps = (dispatch, props) => ({
+  dateChangeHandler(date) {
+    return datePicker => {
+      date.onChange(datePicker.format());
+    };
+  },
+
   typeChangeHandler(type, onBudget) {
     return event => {
       const newType = event.target.value;
@@ -42,13 +49,9 @@ const mapDispatchProps = (dispatch, props) => ({
   },
 
   onSubmit(formData) {
-    const [ month, day, year ] = formData.date.split('/');
-    console.log(month, day, year);
-    console.log(parseInt(month));
     const data = {
       ...formData,
-      on_budget: Boolean(Number(formData.on_budget)),
-      date: new Date(year, parseInt(month) - 1, day) // month is zero indexed
+      on_budget: Boolean(Number(formData.on_budget))
     };
     dispatch(createAccount(data));
   }
@@ -69,28 +72,12 @@ const budgetTypes = [
   'merchant'
 ];
 
-const dateSegment = (val) => {
-  return val < 10 ? `0${val}` : `${val}`;
-}
-
-const dateForDisplay = (date = new Date()) => {
-  const { day, month, year } = dateObj(date);
-  return `${dateSegment(month)}/${dateSegment(day)}/${year}`;
-}
-
-const dateObj = (date) => {
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1; // month is 0 indexed
-  const day = date.getDate();
-  return { day, month, year };
-}
-
 export default reduxForm({
   form: 'add-account',
   fields: [ 'balance', 'date', 'name', 'on_budget', 'type' ],
   initialValues: {
     balance: '0.00',
-    date: dateForDisplay()
+    date: moment().format()
   },
   validate
 }, mapStateProps, mapDispatchProps)(AddAccountForm);

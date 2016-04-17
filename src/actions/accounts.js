@@ -47,7 +47,8 @@ let aid = 0;
 let tid = 0;
 export function createAccount(data) {
   const account = { ...data };
-  delete account.amount;
+  delete account.balance;
+  delete account.date;
 
   const transaction = { amount: data.balance, date: data.date };
 

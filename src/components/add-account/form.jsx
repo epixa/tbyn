@@ -1,5 +1,9 @@
 'use strict';
 
+import 'react-datepicker/dist/react-datepicker.css';
+
+import moment from 'moment';
+import DatePicker from 'react-datepicker';
 import React, { PropTypes } from 'react';
 
 const AddAccountForm = ({
@@ -7,6 +11,7 @@ const AddAccountForm = ({
   handleSubmit,
   submitting,
   submitFailed,
+  dateChangeHandler,
   typeChangeHandler,
   budgetRecommended,
   offBudgetRecommended
@@ -28,7 +33,8 @@ const AddAccountForm = ({
 
     <label>
       Date of Current Balance
-      <input type="text" {...date}/>
+      <input type="hidden" {...date} />
+      <DatePicker readOnly={true} dateFormat="MM/DD/YYYY" selected={moment(date.value)} onChange={dateChangeHandler(date)} />
     </label>
     {date.touched && date.error && <div>{date.error}</div>}
 
@@ -73,6 +79,7 @@ AddAccountForm.propTypes = {
   fields: PropTypes.object.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   submitting: PropTypes.bool.isRequired,
+  dateChangeHandler: PropTypes.func.isRequired,
   typeChangeHandler: PropTypes.func.isRequired,
   budgetRecommended: PropTypes.bool,
   offBudgetRecommended: PropTypes.bool
