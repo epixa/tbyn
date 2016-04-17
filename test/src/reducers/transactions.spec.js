@@ -3,9 +3,27 @@
 import { fromJS } from 'immutable';
 
 import reducer from '../../../src/reducers/transactions';
-import data from '../../support/fixtures/transaction-data';
+import data, { initialTransactionData } from '../../support/fixtures/transaction-data';
+import { requiredAccountData } from '../../support/fixtures/account-data';
 
 describe('data/transactions/reducer', function () {
+  context('CREATE_ACCOUNT', function () {
+    it('creates the initial transaction', function () {
+      const stateBefore = undefined;
+      const stateAfter = fromJS([ initialTransactionData ]);
+      const state = reducer(stateBefore, {
+        account: requiredAccountData,
+        transaction: {
+          id: initialTransactionData.id,
+          amount: String(initialTransactionData.amount / 100),
+          date: new Date(2016, 0, 2)
+        },
+        type: 'CREATE_ACCOUNT'
+      });
+      expect(state).to.equal(stateAfter);
+    });
+  });
+
   context('ADD_TRANSACTION', function () {
     it('to create new transaction in list', function () {
       const stateBefore = undefined;

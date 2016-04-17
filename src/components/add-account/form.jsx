@@ -3,7 +3,7 @@
 import React, { PropTypes } from 'react';
 
 const AddAccountForm = ({
-  fields: { name, on_budget, type },
+  fields: { balance, name, on_budget, type },
   handleSubmit,
   submitting,
   submitFailed,
@@ -19,6 +19,12 @@ const AddAccountForm = ({
       <input type="text" {...name}/>
     </label>
     {name.touched && name.error && <div>{name.error}</div>}
+
+    <label>
+      Current Balance
+      <input type="text" {...balance}/>
+    </label>
+    {balance.touched && balance.error && <div>{balance.error}</div>}
 
     <label>
       Type

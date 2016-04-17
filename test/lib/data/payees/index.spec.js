@@ -11,9 +11,14 @@ describe('data/payees', function () {
   });
 
   describe('#empty()', function () {
-    it('returns an empty immutable list', function () {
+    it('list with only one record', function () {
       const list = payees.empty();
-      expect(list).to.have.size(0);
+      expect(list).to.have.size(1);
+    });
+    it('record is "starting balance" payee', function () {
+      const payee = payees.empty().first();
+      expect(payee.get('id')).to.equal('0');
+      expect(payee.get('name')).to.equal('Starting Balance');
     });
   });
 

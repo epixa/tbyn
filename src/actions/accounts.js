@@ -43,10 +43,17 @@ export function selectAccount(account) {
   };
 }
 
-let id = 0;
-export function createAccount(account) {
+let aid = 0;
+let tid = 0;
+export function createAccount(data) {
+  const account = { ...data };
+  delete account.amount;
+
+  const transaction = { amount: data.balance, date: new Date() };
+
   return {
-    account: { id: String(++id), ...account },
+    account: { id: String(++aid), ...account },
+    transaction: { id: String(++tid), ...transaction },
     type: CREATE_ACCOUNT
   };
 }

@@ -5,10 +5,12 @@ import { reduxForm } from 'redux-form';
 import AddAccountForm from '../../components/add-account/form';
 import { changeAddAccountType, createAccount } from '../../actions/accounts';
 
-const validate = ({ name, on_budget, type }) => {
+const validate = ({ balance, name, on_budget, type }) => {
   const errors = {};
 
   if (!name) errors.name = 'Name is required';
+
+  if (!balance) errors.balance = 'Balance is required';
 
   if (!on_budget) errors.on_budget = 'Budget status is required';
 
@@ -60,6 +62,9 @@ const budgetTypes = [
 
 export default reduxForm({
   form: 'add-account',
-  fields: [ 'name', 'on_budget', 'type' ],
+  fields: [ 'balance', 'name', 'on_budget', 'type' ],
+  initialValues: {
+    balance: '0.00'
+  },
   validate
 }, mapStateProps, mapDispatchProps)(AddAccountForm);
