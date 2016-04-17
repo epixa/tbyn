@@ -49,7 +49,7 @@ export function createAccount(data) {
   const account = { ...data };
   delete account.amount;
 
-  const transaction = { amount: data.balance, date: new Date() };
+  const transaction = { amount: data.balance, date: data.date };
 
   return {
     account: { id: String(++aid), ...account },

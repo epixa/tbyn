@@ -5,12 +5,14 @@ import { reduxForm } from 'redux-form';
 import AddAccountForm from '../../components/add-account/form';
 import { changeAddAccountType, createAccount } from '../../actions/accounts';
 
-const validate = ({ balance, name, on_budget, type }) => {
+const validate = ({ balance, date, name, on_budget, type }) => {
   const errors = {};
 
   if (!name) errors.name = 'Name is required';
 
   if (!balance) errors.balance = 'Balance is required';
+
+  if (!date) errors.date = 'Date is required';
 
   if (!on_budget) errors.on_budget = 'Budget status is required';
 
@@ -39,8 +41,15 @@ const mapDispatchProps = (dispatch, props) => ({
     };
   },
 
-  onSubmit(data) {
-    data.on_budget = Boolean(Number(data.on_budget));
+  onSubmit(formData) {
+    const [ month, day, year ] = formData.date.split('/');
+    console.log(month, day, year);
+    console.log(parseInt(month));
+    const data = {
+      ...formData,
+      on_budget: Boolean(Number(formData.on_budget)),
+      date: new Date(year, parseInt(month) - 1, day) // month is zero indexed
+    };
     dispatch(createAccount(data));
   }
 });
@@ -60,11 +69,28 @@ const budgetTypes = [
   'merchant'
 ];
 
+const dateSegment = (val) => {
+  return val < 10 ? `0${val}` : `${val}`;
+}
+
+const dateForDisplay = (date = new Date()) => {
+  const { day, month, year } = dateObj(date);
+  return `${dateSegment(month)}/${dateSegment(day)}/${year}`;
+}
+
+const dateObj = (date) => {
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1; // month is 0 indexed
+  const day = date.getDate();
+  return { day, month, year };
+}
+
 export default reduxForm({
   form: 'add-account',
-  fields: [ 'balance', 'name', 'on_budget', 'type' ],
+  fields: [ 'balance', 'date', 'name', 'on_budget', 'type' ],
   initialValues: {
-    balance: '0.00'
+    balance: '0.00',
+    date: dateForDisplay()
   },
   validate
 }, mapStateProps, mapDispatchProps)(AddAccountForm);
