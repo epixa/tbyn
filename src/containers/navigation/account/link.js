@@ -7,6 +7,7 @@ import AccountLink from '../../../components/navigation/account/link';
 
 const mapStateProps = (state, props) => ({
   total: amountInAccount(state.transactions, props.account),
+  truncated: state.navigation.truncated
 });
 
 const mapDispatchProps = (dispatch, props) => ({

@@ -16,9 +16,7 @@ const SectionNav = () => (
       Reports
     </ReportsLink>
 
-    <AllAccountsLink>
-      All Accounts
-    </AllAccountsLink>
+    <AllAccountsLink/>
   </div>
 );
 

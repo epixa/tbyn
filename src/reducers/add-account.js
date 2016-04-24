@@ -7,13 +7,21 @@ import {
   CHANGE_ADD_ACCOUNT_TYPE
 } from '../actions/accounts';
 
+import { TOGGLE_SIDEBAR } from '../actions/sidebar';
+
 const DEFAULT_STATE = {
   active: false,
-  newAccountType: null
+  newAccountType: null,
+  truncated: false
 };
 
 const addAccountReducer = (state = DEFAULT_STATE, action) => {
   switch (action.type) {
+    case TOGGLE_SIDEBAR:
+      return {
+        ...state,
+        truncated: !state.truncated
+      };
     case SHOW_ADD_ACCOUNT:
       return {
         ...state,

@@ -13,7 +13,7 @@ describe('src/reducers/add-account', function () {
     deepFreeze(action, stateBefore);
 
     const state = reducer(stateBefore, action);
-    expect(state.active).to.deep.equal(false);
+    expect(state.active).to.equal(false);
   });
   it('sets newAccountType to null by default', function () {
     const action = {};
@@ -22,7 +22,39 @@ describe('src/reducers/add-account', function () {
     deepFreeze(action, stateBefore);
 
     const state = reducer(stateBefore, action);
-    expect(state.newAccountType).to.deep.equal(null);
+    expect(state.newAccountType).to.equal(null);
+  });
+  it('sets truncated to false by default', function () {
+    const action = {};
+    const stateBefore = undefined;
+
+    deepFreeze(action, stateBefore);
+
+    const state = reducer(stateBefore, action);
+    expect(state.truncated).to.equal(false);
+  });
+
+  context('TOGGLE_SIDEBAR', function () {
+    it('sets truncated to true if it was previously false', function () {
+      const action = { type: 'TOGGLE_SIDEBAR' };
+      const stateBefore = { truncated: false };
+      const stateAfter = { truncated: true };
+
+      deepFreeze(action, stateBefore);
+
+      const state = reducer(stateBefore, action);
+      expect(state).to.deep.equal(stateAfter);
+    });
+    it('sets truncated to false if it was previously true', function () {
+      const action = { type: 'TOGGLE_SIDEBAR' };
+      const stateBefore = { truncated: true };
+      const stateAfter = { truncated: false };
+
+      deepFreeze(action, stateBefore);
+
+      const state = reducer(stateBefore, action);
+      expect(state).to.deep.equal(stateAfter);
+    });
   });
 
   context('SHOW_ADD_ACCOUNT', function () {

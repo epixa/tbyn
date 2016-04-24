@@ -2,7 +2,11 @@
 
 import { connect } from 'react-redux';
 
-import SectionLink from '../../../components/navigation/section/link';
+import AllAccountsLink from '../../../components/navigation/section/all-accounts-link';
+
+const mapStateProps = (state) => ({
+  truncated: state.navigation.truncated
+});
 
 const mapDispatchProps = (dispatch, props) => ({
   onClick() {
@@ -10,4 +14,4 @@ const mapDispatchProps = (dispatch, props) => ({
   }
 });
 
-export default connect(null, mapDispatchProps)(SectionLink);
+export default connect(mapStateProps, mapDispatchProps)(AllAccountsLink);

@@ -2,9 +2,9 @@
 
 import React from 'react';
 
-const ToggleSidebar = ({ onClick }) => (
+const ToggleSidebar = ({ collapsed, onClick }) => (
   <a onClick={onClick}>
-    Toggle
+    {collapsed ? 'Expand' : 'Collapse' }
   </a>
 );
 

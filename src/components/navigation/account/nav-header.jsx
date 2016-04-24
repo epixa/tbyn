@@ -2,10 +2,10 @@
 
 import React from 'react';
 
-const AccountNavHeader = ({children, onClick, total}) => (
+const AccountNavHeader = ({children, onClick, total, truncated}) => (
   <h1 onClick={onClick}>
     {children}
-    <span>{total}</span>
+    {!truncated && <span>{total}</span>}
   </h1>
 );
 

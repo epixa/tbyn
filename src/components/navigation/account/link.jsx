@@ -2,10 +2,10 @@
 
 import React from 'react';
 
-const AccountLink = ({ account, onClick, total }) => (
+const AccountLink = ({ account, onClick, total, truncated }) => (
   <a onClick={onClick}>
     {account.get('name')}
-    <span>{total}</span>
+    {!truncated && <span>{total}</span>}
   </a>
 );
 
