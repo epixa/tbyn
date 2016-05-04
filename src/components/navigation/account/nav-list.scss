@@ -1,0 +1,17 @@
+@import "../../../styles/variables";
+
+.account-nav-list {
+  a {
+    display: flex;
+    padding: 5px 0;
+    color: $white;
+
+    span {
+      flex: 1;
+    }
+
+    span + span {
+      flex: 0;
+    }
+  }
+}

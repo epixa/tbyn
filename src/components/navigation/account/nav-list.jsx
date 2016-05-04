@@ -1,11 +1,13 @@
 'use strict';
 
+import './nav-list.scss';
+
 import React from 'react';
 
 import AccountLink from '../../../containers/navigation/account/link';
 
 const AccountNavList = ({ accounts }) => (
-  <div>
+  <div className="account-nav-list">
     {accounts.map(account =>
       <AccountLink key={account.get('id')} account={account} />
     )}

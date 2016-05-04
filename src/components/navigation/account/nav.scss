@@ -1,0 +1,23 @@
+@import "../../../styles/variables";
+
+.account-nav {
+  background-color: darken($background-blue, 20%);
+  border-radius: 4px;
+  padding: 10px 10px;
+  margin: 5px 0;
+
+  h1 {
+    font-size: 16px;
+    color: $white;
+    display: flex;
+    margin: 0;
+
+    span {
+      flex: 1;
+    }
+
+    span + span {
+      flex: 0;
+    }
+  }
+}
