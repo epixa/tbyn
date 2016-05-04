@@ -1,10 +1,12 @@
 'use strict';
 
+var autoprefixer = require('autoprefixer');
+
 module.exports = {
   context: `${__dirname}/src`,
   entry: {
     javascript: './index.jsx',
-    html: './index.html',
+    html: './index.html'
   },
   module: {
     loaders: [
@@ -20,9 +22,14 @@ module.exports = {
       {
         test: /\.css$/,
         loaders: ['style', 'css']
+      },
+      {
+        test: /\.scss$/,
+        loaders: ['style', 'css', 'postcss', 'sass']
       }
     ]
   },
+  postcss: [ autoprefixer({ browsers: ['last 2 versions'] }) ],
   output: {
     filename: 'app.js',
     path: `${__dirname}/dist`
