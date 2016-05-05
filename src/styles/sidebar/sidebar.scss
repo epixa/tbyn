@@ -1,0 +1,21 @@
+.sidebar {
+  width: 300px;
+  padding: 10px;
+
+  &.collapsed {
+    width: 200px;
+  }
+
+  .sidebar-bottom {
+    display: flex;
+
+    :nth-child(1) {
+      flex: 1;
+    }
+
+    :nth-child(2) {
+      flex: 0;
+    }
+
+  }
+}

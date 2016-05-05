@@ -1,0 +1,15 @@
+@import "../variables";
+
+.add-account {
+
+  .add-account-button {
+    background-color: darken($background-blue, 15%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    height: 30px;
+    padding: 0 20px;
+  }
+
+}

@@ -1,6 +1,6 @@
 'use strict';
 
-import './nav-list.scss';
+import './../../../styles/navigation/account/nav-list.scss';
 
 import React from 'react';
 

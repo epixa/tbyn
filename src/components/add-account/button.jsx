@@ -3,7 +3,7 @@
 import React from 'react';
 
 const AddAccountButton = ({ onClick, truncated }) => (
-  <button onClick={onClick}>
+  <button className="add-account-button" onClick={onClick}>
     {truncated ? 'Add' : 'Add Account'}
   </button>
 );
