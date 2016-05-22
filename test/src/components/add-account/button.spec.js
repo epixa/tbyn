@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 
 import AddAccountButton from '../../../../src/components/add-account/button';
 
@@ -16,7 +16,7 @@ describe('<AddAccountButton/>', () => {
   });
   it('calls onClick when clicked', () => {
     const onClick = sinon.stub();
-    const component = mount(<AddAccountButton onClick={onClick}/>);
+    const component = shallow(<AddAccountButton onClick={onClick}/>);
     component.find('button').simulate('click');
     expect(onClick).to.have.been.called;
   });
