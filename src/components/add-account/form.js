@@ -2,9 +2,12 @@
 
 import 'react-datepicker/dist/react-datepicker.css';
 
-import moment from 'moment';
-import DatePicker from 'react-datepicker';
 import React, { PropTypes } from 'react';
+
+import DateField from '../form/date-field';
+import RadioBooleanField from '../form/radio-boolean-field';
+import SelectField from '../form/select-field';
+import TextField from '../form/text-field';
 
 const AddAccountForm = ({
   fields: { balance, date, name, on_budget, type },
@@ -20,55 +23,49 @@ const AddAccountForm = ({
   <form onSubmit={handleSubmit}>
     {submitFailed && <div>There was an error with your form submission</div>}
 
-    <label>
+    <TextField field={name}>
       Name
-      <input type="text" {...name}/>
-    </label>
-    {name.touched && name.error && <div>{name.error}</div>}
+    </TextField>
 
-    <label>
+    <TextField field={balance}>
       Current Balance
-      <input type="text" {...balance}/>
-    </label>
-    {balance.touched && balance.error && <div>{balance.error}</div>}
+    </TextField>
 
-    <label>
+    <DateField field={date} changeHandler={dateChangeHandler}>
       Date of Current Balance
-      <input type="hidden" {...date} />
-      <DatePicker readOnly={true} dateFormat="MM/DD/YYYY" selected={moment(date.value)} onChange={dateChangeHandler(date)} />
-    </label>
-    {date.touched && date.error && <div>{date.error}</div>}
+    </DateField>
 
-    <label>
+    <SelectField
+      field={type}
+      changeHandler={type => typeChangeHandler(type, on_budget)}
+      allowRenderError={submitFailed}
+      options={{
+        "": "Select an Account Type...",
+        "checking": "Checking",
+        "savings": "Savings",
+        "credit_card": "Credit Card",
+        "cash": "Cash",
+        "other_credit": "Line of Credit or Other Credit",
+        "paypal": "Paypal",
+        "merchant": "Merchant Account",
+        "investment": "Investment Account",
+        "mortgage": "Mortgage",
+        "other_asset": "Other Asset (House, Car, etc)",
+        "other_loan": "Other Loan or Liability"
+      }}>
       Type
-      <select {...type} onChange={typeChangeHandler(type, on_budget)}>
-        <option value="">Select an Account Type...</option>
-        <option value="checking">Checking</option>
-        <option value="savings">Savings</option>
-        <option value="credit_card">Credit Card</option>
-        <option value="cash">Cash</option>
-        <option value="other_credit">Line of Credit or Other Credit</option>
-        <option value="paypal">Paypal</option>
-        <option value="merchant">Merchant Account</option>
-        <option value="investment">Investment Account</option>
-        <option value="mortgage">Mortgage</option>
-        <option value="other_asset">Other Asset (House, Car, etc)</option>
-        <option value="other_loan">Other Loan or Liability</option>
-      </select>
-    </label>
-    {submitFailed && type.touched && type.error && <div>{type.error}</div>}
+    </SelectField>
 
-    <label>
-      <input type="radio" name="on_budget" {...on_budget} value="1" checked={on_budget.value === '1'}/>
-      Budget account
-      <span> - This account should affect my budget {budgetRecommended && <span>(recommended)</span>}</span>
-    </label>
-    <label>
-      <input type="radio" name="on_budget" {...on_budget} value="0" checked={on_budget.value === '0'}/>
-      Off-Budget
-      <span> - This account should not affect my budget {offBudgetRecommended && <span>(recommended)</span>}</span>
-    </label>
-    {on_budget.touched && on_budget.error && <div>{on_budget.error}</div>}
+    <RadioBooleanField field={on_budget}>
+      <span>
+        Budget account
+        <span> - This account should affect my budget {budgetRecommended && <span>(recommended)</span>}</span>
+      </span>
+      <span>
+        Off-Budget
+        <span> - This account should not affect my budget {offBudgetRecommended && <span>(recommended)</span>}</span>
+      </span>
+    </RadioBooleanField>
 
     <button onClick={handleCancel}>
       Cancel
