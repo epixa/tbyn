@@ -1,6 +1,4 @@
-'use strict';
-
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 import SectionLink from './link';
 
@@ -9,5 +7,10 @@ const AllAccountsLink = ({ onClick, truncated }) => (
     {truncated ? 'All' : 'All Accounts'}
   </SectionLink>
 );
+
+AllAccountsLink.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  truncated: PropTypes.bool.isRequired,
+};
 
 export default AllAccountsLink;

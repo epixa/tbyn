@@ -1,28 +1,25 @@
-'use strict';
-
 import { defaults } from 'lodash';
 import * as schema from '../../../../lib/data/transactions/schema';
-import account from '../../../support/fixtures/account';
-import accounts from '../../../support/fixtures/accounts';
+import accountFixture from '../../../support/fixtures/account';
+import accountsFixture from '../../../support/fixtures/accounts';
 import payees from '../../../support/fixtures/payees';
 import transactionData, { requiredTransactionData } from '../../../support/fixtures/transaction-data';
-import transaction from '../../../support/fixtures/transaction';
-import db from '../../../support/fixtures/db';
+import transactionFixture from '../../../support/fixtures/transaction';
 
 describe('data/transactions/schema', function () {
   describe('#isInflow()', function () {
     it('returns true when amount is positive', function () {
-      const updatedTransaction = transaction.set('amount', 1);
+      const updatedTransaction = transactionFixture.set('amount', 1);
       const flag = schema.isInflow(updatedTransaction);
       expect(flag).to.equal(true);
     });
     it('returns true when amount is 0 (zero)', function () {
-      const updatedTransaction = transaction.set('amount', 0);
+      const updatedTransaction = transactionFixture.set('amount', 0);
       const flag = schema.isInflow(updatedTransaction);
       expect(flag).to.equal(true);
     });
     it('returns false when amount is negative', function () {
-      const updatedTransaction = transaction.set('amount', -1);
+      const updatedTransaction = transactionFixture.set('amount', -1);
       const flag = schema.isInflow(updatedTransaction);
       expect(flag).to.equal(false);
     });
@@ -30,17 +27,17 @@ describe('data/transactions/schema', function () {
 
   describe('#isOutflow()', function () {
     it('returns false when amount is positive', function () {
-      const updatedTransaction = transaction.set('amount', 1);
+      const updatedTransaction = transactionFixture.set('amount', 1);
       const flag = schema.isOutflow(updatedTransaction);
       expect(flag).to.equal(false);
     });
     it('returns false when amount is 0 (zero)', function () {
-      const updatedTransaction = transaction.set('amount', 0);
+      const updatedTransaction = transactionFixture.set('amount', 0);
       const flag = schema.isOutflow(updatedTransaction);
       expect(flag).to.equal(false);
     });
     it('returns true when amount is negative', function () {
-      const updatedTransaction = transaction.set('amount', -1);
+      const updatedTransaction = transactionFixture.set('amount', -1);
       const flag = schema.isOutflow(updatedTransaction);
       expect(flag).to.equal(true);
     });
@@ -48,20 +45,20 @@ describe('data/transactions/schema', function () {
 
   describe('#dollarAmount()', function () {
     it('returns the amount in dollars', function () {
-      const updatedTransaction = transaction.set('amount', 12345);
+      const updatedTransaction = transactionFixture.set('amount', 12345);
       const dollars = schema.dollarAmount(updatedTransaction);
-      expect(dollars).to.equal("123.45");
+      expect(dollars).to.equal('123.45');
     });
   });
 
   describe('#isCompleted()', function () {
     it('returns true when transaction is completed', function () {
-      const updatedTransaction = transaction.set('completed', true);
+      const updatedTransaction = transactionFixture.set('completed', true);
       const flag = schema.isCompleted(updatedTransaction);
       expect(flag).to.equal(true);
     });
     it('returns false when transaction is not completed', function () {
-      const updatedTransaction = transaction.set('completed', false);
+      const updatedTransaction = transactionFixture.set('completed', false);
       const flag = schema.isCompleted(updatedTransaction);
       expect(flag).to.equal(false);
     });
@@ -69,12 +66,12 @@ describe('data/transactions/schema', function () {
 
   describe('#isPending()', function () {
     it('returns false when transaction is completed', function () {
-      const updatedTransaction = transaction.set('completed', true);
+      const updatedTransaction = transactionFixture.set('completed', true);
       const flag = schema.isPending(updatedTransaction);
       expect(flag).to.equal(false);
     });
     it('returns true when transaction is not completed', function () {
-      const updatedTransaction = transaction.set('completed', false);
+      const updatedTransaction = transactionFixture.set('completed', false);
       const flag = schema.isPending(updatedTransaction);
       expect(flag).to.equal(true);
     });
@@ -82,41 +79,41 @@ describe('data/transactions/schema', function () {
 
   describe('#isForAccount()', function () {
     it('returns true when transaction belongs to account', function () {
-      const updatedTransaction = transaction.set('account', account.get('id'));
-      const flag = schema.isForAccount(updatedTransaction, account);
+      const updatedTransaction = transactionFixture.set('account', accountFixture.get('id'));
+      const flag = schema.isForAccount(updatedTransaction, accountFixture);
       expect(flag).to.equal(true);
     });
     it('returns false when transaction belongs to a different account', function () {
-      const updatedTransaction = transaction.set('account', "1234567");
-      const flag = schema.isForAccount(updatedTransaction, account);
+      const updatedTransaction = transactionFixture.set('account', '1234567');
+      const flag = schema.isForAccount(updatedTransaction, accountFixture);
       expect(flag).to.equal(false);
     });
     it('returns false when transaction has no account', function () {
-      const updatedTransaction = transaction.set('account', "");
-      const flag = schema.isForAccount(updatedTransaction, account);
+      const updatedTransaction = transactionFixture.set('account', '');
+      const flag = schema.isForAccount(updatedTransaction, accountFixture);
       expect(flag).to.equal(false);
     });
   });
 
   describe('#account()', function () {
     it('returns the account associated with this transaction', function () {
-      const account = schema.account(accounts, transaction);
-      expect(transaction.get('account')).to.equal(account.get('id'));
+      const account = schema.account(accountsFixture, transactionFixture);
+      expect(transactionFixture.get('account')).to.equal(account.get('id'));
     });
     it('returns undefined if transaction has no account', function () {
-      const updatedTransaction = transaction.set('account', '');
-      const account = schema.account(accounts, updatedTransaction);
+      const updatedTransaction = transactionFixture.set('account', '');
+      const account = schema.account(accountsFixture, updatedTransaction);
       expect(account).to.equal(undefined);
     });
   });
 
   describe('#payee()', function () {
     it('returns the payee associated with this transaction', function () {
-      const payee = schema.payee(payees, transaction);
-      expect(transaction.get('payee')).to.equal(payee.get('id'));
+      const payee = schema.payee(payees, transactionFixture);
+      expect(transactionFixture.get('payee')).to.equal(payee.get('id'));
     });
     it('returns undefined if transaction has no payee', function () {
-      const updatedTransaction = transaction.set('payee', '');
+      const updatedTransaction = transactionFixture.set('payee', '');
       const payee = schema.payee(payees, updatedTransaction);
       expect(payee).to.equal(undefined);
     });
@@ -141,13 +138,13 @@ describe('data/transactions/schema', function () {
     });
     it('allows overiding of defaults', function () {
       const overrides = {
-        "account": "123",
-        "payee": "345",
-        "date": "2016-01-02",
-        "memo": "wat",
-        "check": "001",
-        "amount": 12345,
-        "completed": true
+        account: '123',
+        payee: '345',
+        date: '2016-01-02',
+        memo: 'wat',
+        check: '001',
+        amount: 12345,
+        completed: true,
       };
       const transaction = schema.cast(defaults(overrides, transactionData));
       expect(transaction.get('account')).to.equal(overrides.account);

@@ -1,5 +1,3 @@
-'use strict';
-
 export const CANCEL_ADD_ACCOUNT = 'CANCEL_ADD_ACCOUNT';
 export const SHOW_ADD_ACCOUNT = 'SHOW_ADD_ACCOUNT';
 export const CHANGE_ADD_ACCOUNT_TYPE = 'CHANGE_ADD_ACCOUNT_TYPE';
@@ -12,34 +10,34 @@ export const DELETE_ACCOUNT = 'DELETE_ACCOUNT';
 
 export function cancelAddAccount() {
   return {
-    type: CANCEL_ADD_ACCOUNT
+    type: CANCEL_ADD_ACCOUNT,
   };
 }
 
 export function showAddAccount() {
   return {
-    type: SHOW_ADD_ACCOUNT
+    type: SHOW_ADD_ACCOUNT,
   };
 }
 
 export function changeAddAccountType(newAccountType) {
   return {
     newAccountType,
-    type: CHANGE_ADD_ACCOUNT_TYPE
+    type: CHANGE_ADD_ACCOUNT_TYPE,
   };
 }
 
 export function receiveAccounts(accounts) {
   return {
     accounts,
-    type: RECEIVE_ACCOUNTS
+    type: RECEIVE_ACCOUNTS,
   };
 }
 
 export function selectAccount(account) {
   return {
     account,
-    type: SELECT_ACCOUNT
+    type: SELECT_ACCOUNT,
   };
 }
 
@@ -55,27 +53,27 @@ export function createAccount(data) {
   return {
     account: { id: String(++aid), ...account },
     transaction: { id: String(++tid), ...transaction },
-    type: CREATE_ACCOUNT
+    type: CREATE_ACCOUNT,
   };
 }
 
 export function closeAccount(account) {
   return {
     account,
-    type: CLOSE_ACCOUNT
+    type: CLOSE_ACCOUNT,
   };
 }
 
 export function reopenAccount(account) {
   return {
     account,
-    type: REOPEN_ACCOUNT
+    type: REOPEN_ACCOUNT,
   };
 }
 
 export function deleteAccount(account) {
   return {
     account,
-    type: DELETE_ACCOUNT
+    type: DELETE_ACCOUNT,
   };
 }

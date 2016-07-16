@@ -1,5 +1,3 @@
-'use strict';
-
 import Promise from 'bluebird';
 import chai from 'chai';
 import sinon from 'sinon';

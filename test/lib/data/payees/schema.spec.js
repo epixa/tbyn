@@ -1,9 +1,6 @@
-'use strict';
-
 import { defaults } from 'lodash';
 import * as schema from '../../../../lib/data/payees/schema';
-import payeeData, { requiredPayeeData } from '../../../support/fixtures/payee-data';
-import payee from '../../../support/fixtures/payee';
+import payeeData from '../../../support/fixtures/payee-data';
 
 describe('data/payees/schema', function () {
   describe('#cast()', function () {

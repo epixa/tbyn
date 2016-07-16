@@ -1,9 +1,7 @@
-'use strict';
-
 import { TOGGLE_SIDEBAR } from '../actions/sidebar';
 
 const DEFAULT_STATE = {
-  truncated: false
+  truncated: false,
 };
 
 const navigationReducer = (state = DEFAULT_STATE, action) => {
@@ -11,7 +9,7 @@ const navigationReducer = (state = DEFAULT_STATE, action) => {
     case TOGGLE_SIDEBAR:
       return {
         ...state,
-        truncated: !state.truncated
+        truncated: !state.truncated,
       };
     default:
       return state;

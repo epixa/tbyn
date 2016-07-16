@@ -1,10 +1,8 @@
-'use strict';
-
 import {
   CREATE_ACCOUNT,
   SHOW_ADD_ACCOUNT,
   CANCEL_ADD_ACCOUNT,
-  CHANGE_ADD_ACCOUNT_TYPE
+  CHANGE_ADD_ACCOUNT_TYPE,
 } from '../actions/accounts';
 
 import { TOGGLE_SIDEBAR } from '../actions/sidebar';
@@ -12,7 +10,7 @@ import { TOGGLE_SIDEBAR } from '../actions/sidebar';
 const DEFAULT_STATE = {
   active: false,
   newAccountType: null,
-  truncated: false
+  truncated: false,
 };
 
 const addAccountReducer = (state = DEFAULT_STATE, action) => {
@@ -20,29 +18,29 @@ const addAccountReducer = (state = DEFAULT_STATE, action) => {
     case TOGGLE_SIDEBAR:
       return {
         ...state,
-        truncated: !state.truncated
+        truncated: !state.truncated,
       };
     case SHOW_ADD_ACCOUNT:
       return {
         ...state,
-        active: true
+        active: true,
       };
     case CANCEL_ADD_ACCOUNT:
       return {
         ...state,
         active: false,
-        newAccountType: null
+        newAccountType: null,
       };
     case CREATE_ACCOUNT:
       return {
         ...state,
         active: false,
-        newAccountType: null
+        newAccountType: null,
       };
     case CHANGE_ADD_ACCOUNT_TYPE:
       return {
         ...state,
-        newAccountType: action.newAccountType
+        newAccountType: action.newAccountType,
       };
     default:
       return state;

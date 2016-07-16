@@ -1,5 +1,3 @@
-'use strict';
-
 import 'react-datepicker/dist/react-datepicker.css';
 
 import React, { PropTypes } from 'react';
@@ -10,7 +8,7 @@ import SelectField from '../form/select-field';
 import TextField from '../form/text-field';
 
 const AddAccountForm = ({
-  fields: { balance, date, name, on_budget, type },
+  fields: { balance, date, name, on_budget: onBudget, type },
   handleCancel,
   handleSubmit,
   submitting,
@@ -18,8 +16,8 @@ const AddAccountForm = ({
   dateChangeHandler,
   typeChangeHandler,
   budgetRecommended,
-  offBudgetRecommended
-}) => {return (
+  offBudgetRecommended,
+}) => (
   <form onSubmit={handleSubmit}>
     {submitFailed && <div>There was an error with your form submission</div>}
 
@@ -37,26 +35,27 @@ const AddAccountForm = ({
 
     <SelectField
       field={type}
-      changeHandler={type => typeChangeHandler(type, on_budget)}
+      changeHandler={fieldType => typeChangeHandler(fieldType, onBudget)}
       allowRenderError={submitFailed}
       options={{
-        "": "Select an Account Type...",
-        "checking": "Checking",
-        "savings": "Savings",
-        "credit_card": "Credit Card",
-        "cash": "Cash",
-        "other_credit": "Line of Credit or Other Credit",
-        "paypal": "Paypal",
-        "merchant": "Merchant Account",
-        "investment": "Investment Account",
-        "mortgage": "Mortgage",
-        "other_asset": "Other Asset (House, Car, etc)",
-        "other_loan": "Other Loan or Liability"
-      }}>
+        '': 'Select an Account Type...',
+        checking: 'Checking',
+        savings: 'Savings',
+        credit_card: 'Credit Card',
+        cash: 'Cash',
+        other_credit: 'Line of Credit or Other Credit',
+        paypal: 'Paypal',
+        merchant: 'Merchant Account',
+        investment: 'Investment Account',
+        mortgage: 'Mortgage',
+        other_asset: 'Other Asset (House, Car, etc)',
+        other_loan: 'Other Loan or Liability',
+      }}
+    >
       Type
     </SelectField>
 
-    <RadioBooleanField field={on_budget}>
+    <RadioBooleanField field={onBudget}>
       <span>
         Budget account
         <span> - This account should affect my budget {budgetRecommended && <span>(recommended)</span>}</span>
@@ -74,17 +73,18 @@ const AddAccountForm = ({
       {submitting ? <span>Submitting...</span> : <span>Submit</span>}
     </button>
   </form>
-)};
+);
 
 AddAccountForm.propTypes = {
   fields: PropTypes.object.isRequired,
   handleCancel: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   submitting: PropTypes.bool.isRequired,
+  submitFailed: PropTypes.bool.isRequired,
   dateChangeHandler: PropTypes.func.isRequired,
   typeChangeHandler: PropTypes.func.isRequired,
   budgetRecommended: PropTypes.bool,
-  offBudgetRecommended: PropTypes.bool
+  offBudgetRecommended: PropTypes.bool,
 };
 
 export default AddAccountForm;

@@ -1,9 +1,7 @@
-'use strict';
-
 export const TOGGLE_SIDEBAR = 'TOGGLE_SIDEBAR';
 
 export function toggleSidebar() {
   return {
-    type: TOGGLE_SIDEBAR
+    type: TOGGLE_SIDEBAR,
   };
 }

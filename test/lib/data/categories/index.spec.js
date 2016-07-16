@@ -1,5 +1,3 @@
-'use strict';
-
 import * as categories from '../../../../lib/data/categories';
 import categoryData from '../../../support/fixtures/category-data';
 import db from '../../../support/fixtures/db';
@@ -34,7 +32,7 @@ describe('data/categories', function () {
   });
 
   describe('#insert()', function () {
-    it('returns new db', function() {
+    it('returns new db', function () {
       const list = categories.insert(categoriesDb, categoryData);
       expect(list).not.to.equal(categoriesDb);
     });
@@ -54,7 +52,7 @@ describe('data/categories', function () {
   });
 
   describe('#update()', function () {
-    it('returns new db', function() {
+    it('returns new db', function () {
       const category = categoriesDb.last().set('name', 'wat');
       const list = categories.update(categoriesDb, category);
       expect(list).not.to.equal(categoriesDb);

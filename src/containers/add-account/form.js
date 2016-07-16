@@ -1,12 +1,10 @@
-'use strict';
-
 import moment from 'moment';
 import { reduxForm } from 'redux-form';
 
 import AddAccountForm from '../../components/add-account/form';
 import { cancelAddAccount, changeAddAccountType, createAccount } from '../../actions/accounts';
 
-const validate = ({ balance, date, name, on_budget, type }) => {
+const validate = ({ balance, date, name, on_budget: onBudget, type }) => {
   const errors = {};
 
   if (!name) errors.name = 'Name is required';
@@ -15,22 +13,22 @@ const validate = ({ balance, date, name, on_budget, type }) => {
 
   if (!date) errors.date = 'Date is required';
 
-  if (!on_budget) errors.on_budget = 'Budget status is required';
+  if (!onBudget) errors.on_budget = 'Budget status is required';
 
   if (!type) errors.type = 'Type is required';
 
   return errors;
 };
 
-const mapStateProps = (state, props) => {
+const mapStateProps = (state) => {
   const onBudgetValue = toOnBudgetValue(state.addAccount.newAccountType);
   return {
     budgetRecommended: onBudgetValue === '1',
-    offBudgetRecommended: onBudgetValue === '0'
+    offBudgetRecommended: onBudgetValue === '0',
   };
 };
 
-const mapDispatchProps = (dispatch, props) => ({
+const mapDispatchProps = (dispatch) => ({
   dateChangeHandler(date) {
     return datePicker => {
       date.onChange(datePicker.format());
@@ -55,10 +53,10 @@ const mapDispatchProps = (dispatch, props) => ({
   onSubmit(formData) {
     const data = {
       ...formData,
-      on_budget: Boolean(Number(formData.on_budget))
+      on_budget: Boolean(Number(formData.on_budget)),
     };
     dispatch(createAccount(data));
-  }
+  },
 });
 
 const toOnBudgetValue = (type) => {
@@ -73,15 +71,15 @@ const budgetTypes = [
   'cash',
   'other_credit',
   'paypal',
-  'merchant'
+  'merchant',
 ];
 
 export default reduxForm({
   form: 'add-account',
-  fields: [ 'balance', 'date', 'name', 'on_budget', 'type' ],
+  fields: ['balance', 'date', 'name', 'on_budget', 'type'],
   initialValues: {
     balance: '0.00',
-    date: moment().format()
+    date: moment().format(),
   },
-  validate
+  validate,
 }, mapStateProps, mapDispatchProps)(AddAccountForm);

@@ -10,6 +10,7 @@
   "scripts": {
     "build": "webpack",
     "dev": "webpack-dev-server --hot --inline",
+    "lint": "eslint .",
     "test": "mocha -r test/setup -r ignore-styles --compilers js:babel-core/register test/**/*.spec.js",
     "test:dev": "npm test -- --watch"
   },
@@ -41,6 +42,11 @@
     "chai-immutable": "^1.5.4",
     "css-loader": "^0.23.1",
     "enzyme": "^2.2.0",
+    "eslint": "^3.1.0",
+    "eslint-config-airbnb": "^9.0.1",
+    "eslint-plugin-import": "^1.10.3",
+    "eslint-plugin-jsx-a11y": "^2.0.1",
+    "eslint-plugin-react": "^5.2.2",
     "file-loader": "^0.8.5",
     "ignore-styles": "^2.0.0",
     "jsdom": "^9.1.0",

@@ -1,5 +1,3 @@
-'use strict';
-
 import { fromJS } from 'immutable';
 
 import reducer from '../../../src/reducers/categories';
@@ -9,10 +7,10 @@ describe('data/categories/reducer', function () {
   context('ADD_CATEGORY', function () {
     it('to create new category in list', function () {
       const stateBefore = undefined;
-      const stateAfter = fromJS([ data ]);
+      const stateAfter = fromJS([data]);
       const state = reducer(stateBefore, {
         data: requiredCategoryData,
-        type: 'ADD_CATEGORY'
+        type: 'ADD_CATEGORY',
       });
       expect(state).to.equal(stateAfter);
     });
@@ -21,11 +19,11 @@ describe('data/categories/reducer', function () {
   context('UPDATE_CATEGORY', function () {
     it('to update existing category in list', function () {
       const category = fromJS(Object.assign({}, data, { name: 'nowai' }));
-      const stateBefore = fromJS([ data ]);
-      const stateAfter = fromJS([ category ]);
+      const stateBefore = fromJS([data]);
+      const stateAfter = fromJS([category]);
       const state = reducer(stateBefore, {
         category,
-        type: 'UPDATE_CATEGORY'
+        type: 'UPDATE_CATEGORY',
       });
       expect(state).to.equal(stateAfter);
     });
@@ -35,11 +33,11 @@ describe('data/categories/reducer', function () {
     it('to remove existing category from list', function () {
       const category = fromJS(data);
       const otherAccount = fromJS(Object.assign({}, data, { id: '234' }));
-      const stateBefore = fromJS([ category, otherAccount ]);
-      const stateAfter = fromJS([ otherAccount ]);
+      const stateBefore = fromJS([category, otherAccount]);
+      const stateAfter = fromJS([otherAccount]);
       const state = reducer(stateBefore, {
         category,
-        type: 'DELETE_CATEGORY'
+        type: 'DELETE_CATEGORY',
       });
       expect(state).to.equal(stateAfter);
     });

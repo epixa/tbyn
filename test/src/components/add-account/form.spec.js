@@ -1,5 +1,3 @@
-'use strict';
-
 import React from 'react';
 import { shallow } from 'enzyme';
 
@@ -7,13 +5,15 @@ import AddAccountForm from '../../../../src/components/add-account/form';
 
 describe('<AddAccountForm/>', () => {
   let args;
-  beforeEach(() => args = {
-    handleCancel: sinon.stub(),
-    handleSubmit: sinon.stub(),
-    dateChangeHandler: sinon.stub(),
-    typeChangeHandler: sinon.stub(),
-    submitting: false,
-    fields: { balance: {}, date: {}, name: {}, on_budget: {}, type: {} }
+  beforeEach(() => {
+    args = {
+      handleCancel: sinon.stub(),
+      handleSubmit: sinon.stub(),
+      dateChangeHandler: sinon.stub(),
+      typeChangeHandler: sinon.stub(),
+      submitting: false,
+      fields: { balance: {}, date: {}, name: {}, on_budget: {}, type: {} },
+    };
   });
 
   it('invokes handleSubmit on submit', () => {

@@ -1,5 +1,3 @@
-'use strict';
-
 import { connect } from 'react-redux';
 
 import AddAccount from '../../components/add-account';

@@ -1,5 +1,3 @@
-'use strict';
-
 module.exports = {
   context: `${__dirname}/src`,
   entry: {
@@ -11,23 +9,23 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loaders: ['react-hot', 'babel-loader']
+        loaders: ['react-hot', 'babel-loader'],
       },
       {
         test: /\.html$/,
-        loader: 'file?name=[name].[ext]'
+        loader: 'file?name=[name].[ext]',
       },
       {
         test: /\.css$/,
-        loaders: ['style', 'css']
-      }
-    ]
+        loaders: ['style', 'css'],
+      },
+    ],
   },
   output: {
     filename: 'app.js',
-    path: `${__dirname}/dist`
+    path: `${__dirname}/dist`,
   },
   resolve: {
-    extensions: ['', '.webpack.js', '.web.js', '.js', '.jsx']
-  }
+    extensions: ['', '.webpack.js', '.web.js', '.js', '.jsx'],
+  },
 };

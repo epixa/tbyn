@@ -1,5 +1,3 @@
-'use strict';
-
 import { fromJS } from 'immutable';
 import categoryData from './category-data';
 

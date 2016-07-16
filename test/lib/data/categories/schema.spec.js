@@ -1,19 +1,17 @@
-'use strict';
-
 import { defaults } from 'lodash';
 import * as schema from '../../../../lib/data/categories/schema';
 import categoryData, { requiredCategoryData } from '../../../support/fixtures/category-data';
-import category from '../../../support/fixtures/category';
+import categoryFixture from '../../../support/fixtures/category';
 
 describe('data/categories/schema', function () {
   describe('#isActive()', function () {
     it('returns true when category is active', function () {
-      const updatedCategory = category.set('active', true);
+      const updatedCategory = categoryFixture.set('active', true);
       const flag = schema.isActive(updatedCategory);
       expect(flag).to.be.true;
     });
     it('returns false when category is not active', function () {
-      const updatedCategory = category.set('active', false);
+      const updatedCategory = categoryFixture.set('active', false);
       const flag = schema.isActive(updatedCategory);
       expect(flag).to.be.false;
     });
@@ -34,7 +32,7 @@ describe('data/categories/schema', function () {
     });
     it('allows overiding of defaults', function () {
       const overrides = {
-        active: false
+        active: false,
       };
       const category = schema.cast(defaults(overrides, categoryData));
       expect(category.get('active')).to.equal(overrides.active);

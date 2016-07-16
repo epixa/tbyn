@@ -1,5 +1,3 @@
-'use strict';
-
 import React from 'react';
 
 import BudgetLink from '../../../containers/navigation/section/budget-link';
@@ -16,7 +14,7 @@ const SectionNav = () => (
       Reports
     </ReportsLink>
 
-    <AllAccountsLink/>
+    <AllAccountsLink />
   </div>
 );
 

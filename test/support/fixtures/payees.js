@@ -1,6 +1,4 @@
-'use strict';
-
-import { List } from 'immutable';
+import { List as createList } from 'immutable';
 import payee from './payee';
 
-export default List([payee]);
+export default createList([payee]);

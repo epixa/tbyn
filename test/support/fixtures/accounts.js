@@ -1,6 +1,4 @@
-'use strict';
-
-import { List } from 'immutable';
+import { List as createList } from 'immutable';
 import account from './account';
 
-export default List([account]);
+export default createList([account]);

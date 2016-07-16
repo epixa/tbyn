@@ -1,5 +1,3 @@
-'use strict';
-
 import moment from 'moment';
 
 import { STARTING_BALANCE_ID } from '../../lib/data/payees';
@@ -26,7 +24,7 @@ export function defaultBalance(state, data) {
     account: data.account.id,
     completed: true,
     date: dateForStore(data.transaction.date),
-    payee: STARTING_BALANCE_ID
+    payee: STARTING_BALANCE_ID,
   };
   transaction.amount = toCents(transaction.amount);
   return insert(state, transaction);

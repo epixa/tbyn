@@ -1,5 +1,3 @@
-'use strict';
-
 import * as accounts from '../../../../lib/data/accounts';
 import accountData from '../../../support/fixtures/account-data';
 import db from '../../../support/fixtures/db';
@@ -62,7 +60,7 @@ describe('data/accounts', function () {
   });
 
   describe('#insert()', function () {
-    it('returns new db', function() {
+    it('returns new db', function () {
       const list = accounts.insert(accountsDb, accountData);
       expect(list).not.to.equal(accountsDb);
     });
@@ -82,7 +80,7 @@ describe('data/accounts', function () {
   });
 
   describe('#update()', function () {
-    it('returns new db', function() {
+    it('returns new db', function () {
       const account = accountsDb.last().set('name', 'wat');
       const list = accounts.update(accountsDb, account);
       expect(list).not.to.equal(accountsDb);

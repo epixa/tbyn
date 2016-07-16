@@ -1,5 +1,3 @@
-'use strict';
-
 const { freeze, getOwnPropertyNames } = Object;
 
 const deepFreeze = (...objects) => {
@@ -16,7 +14,7 @@ const deepFreeze = (...objects) => {
 };
 
 function isObject(val) {
-  return typeof val === "object" && val !== null;
+  return typeof val === 'object' && val !== null;
 }
 
 export default deepFreeze;

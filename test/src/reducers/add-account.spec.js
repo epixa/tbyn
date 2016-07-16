@@ -1,7 +1,3 @@
-'use strict';
-
-import { fromJS } from 'immutable';
-
 import deepFreeze from '../../support/helpers/deep-freeze';
 import reducer from '../../../src/reducers/add-account';
 

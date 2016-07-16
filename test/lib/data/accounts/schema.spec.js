@@ -1,19 +1,17 @@
-'use strict';
-
 import { defaults } from 'lodash';
 import * as schema from '../../../../lib/data/accounts/schema';
 import accountData, { requiredAccountData } from '../../../support/fixtures/account-data';
-import account from '../../../support/fixtures/account';
+import accountFixture from '../../../support/fixtures/account';
 
 describe('data/accounts/schema', function () {
   describe('#isOnBudget()', function () {
     it('returns true when account is on budget', function () {
-      const updatedAccount = account.set('on_budget', true);
+      const updatedAccount = accountFixture.set('on_budget', true);
       const flag = schema.isOnBudget(updatedAccount);
       expect(flag).to.be.true;
     });
     it('returns false when account is not on budget', function () {
-      const updatedAccount = account.set('on_budget', false);
+      const updatedAccount = accountFixture.set('on_budget', false);
       const flag = schema.isOnBudget(updatedAccount);
       expect(flag).to.be.false;
     });
@@ -21,12 +19,12 @@ describe('data/accounts/schema', function () {
 
   describe('#isOffBudget()', function () {
     it('returns true when account is not on budget', function () {
-      const updatedAccount = account.set('on_budget', false);
+      const updatedAccount = accountFixture.set('on_budget', false);
       const flag = schema.isOffBudget(updatedAccount);
       expect(flag).to.be.true;
     });
     it('returns false when account is on budget', function () {
-      const updatedAccount = account.set('on_budget', true);
+      const updatedAccount = accountFixture.set('on_budget', true);
       const flag = schema.isOffBudget(updatedAccount);
       expect(flag).to.be.false;
     });
@@ -34,12 +32,12 @@ describe('data/accounts/schema', function () {
 
   describe('#isOpen()', function () {
     it('returns true when account is not closed', function () {
-      const updatedAccount = account.set('closed', false);
+      const updatedAccount = accountFixture.set('closed', false);
       const flag = schema.isOpen(updatedAccount);
       expect(flag).to.be.true;
     });
     it('returns false when account is closed', function () {
-      const updatedAccount = account.set('closed', true);
+      const updatedAccount = accountFixture.set('closed', true);
       const flag = schema.isOpen(updatedAccount);
       expect(flag).to.be.false;
     });
@@ -47,12 +45,12 @@ describe('data/accounts/schema', function () {
 
   describe('#isClosed()', function () {
     it('returns true when account is closed', function () {
-      const updatedAccount = account.set('closed', true);
+      const updatedAccount = accountFixture.set('closed', true);
       const flag = schema.isClosed(updatedAccount);
       expect(flag).to.be.true;
     });
     it('returns false when account is not closed', function () {
-      const updatedAccount = account.set('closed', false);
+      const updatedAccount = accountFixture.set('closed', false);
       const flag = schema.isClosed(updatedAccount);
       expect(flag).to.be.false;
     });
@@ -83,7 +81,7 @@ describe('data/accounts/schema', function () {
       const overrides = {
         closed: true,
         on_budget: false,
-        type: schema.types.SAVINGS
+        type: schema.types.SAVINGS,
       };
       const account = schema.cast(defaults(overrides, accountData));
       expect(account.get('closed')).to.equal(overrides.closed);

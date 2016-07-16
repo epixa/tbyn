@@ -1,5 +1,3 @@
-'use strict';
-
 import { empty, insert, update, remove } from '../../lib/data/categories';
 
 export default function categoriesReducer(state = empty(), action) {

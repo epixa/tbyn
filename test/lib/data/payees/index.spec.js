@@ -1,5 +1,3 @@
-'use strict';
-
 import * as payees from '../../../../lib/data/payees';
 import payeeData from '../../../support/fixtures/payee-data';
 import db from '../../../support/fixtures/db';
@@ -23,7 +21,7 @@ describe('data/payees', function () {
   });
 
   describe('#insert()', function () {
-    it('returns new db', function() {
+    it('returns new db', function () {
       const list = payees.insert(payeesDb, payeeData);
       expect(list).not.to.equal(payeesDb);
     });
@@ -42,7 +40,7 @@ describe('data/payees', function () {
   });
 
   describe('#update()', function () {
-    it('returns new db', function() {
+    it('returns new db', function () {
       const payee = payeesDb.last().set('name', 'wat');
       const list = payees.update(payeesDb, payee);
       expect(list).not.to.equal(payeesDb);

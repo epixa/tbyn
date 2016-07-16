@@ -1,5 +1,3 @@
-'use strict';
-
 import { fromJS } from 'immutable';
 
 import * as transactions from '../../../../lib/data/transactions';
@@ -52,7 +50,6 @@ describe('data/transactions', function () {
       expect(amount).to.equal(0);
     });
     it('returns total amount of transactions for the given account', function () {
-      const accountsDb = db.get('accounts');
       const amount = transactions.amountInAccount(transactionsDb, account);
       expect(amount).to.equal(13579);
     });
@@ -71,7 +68,7 @@ describe('data/transactions', function () {
   });
 
   describe('#insert()', function () {
-    it('returns new db', function() {
+    it('returns new db', function () {
       const list = transactions.insert(transactionsDb, transactionData);
       expect(list).not.to.equal(transactionsDb);
     });
@@ -96,7 +93,7 @@ describe('data/transactions', function () {
   });
 
   describe('#update()', function () {
-    it('returns new db', function() {
+    it('returns new db', function () {
       const transaction = transactionsDb.last().set('memo', 'wat');
       const list = transactions.update(transactionsDb, transaction);
       expect(list).not.to.equal(transactionsDb);

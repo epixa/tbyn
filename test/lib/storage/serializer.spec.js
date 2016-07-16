@@ -1,5 +1,3 @@
-'use strict';
-
 import * as serializer from '../../../lib/storage/serializer';
 
 describe('storage/serializer', function () {
@@ -19,7 +17,7 @@ describe('storage/serializer', function () {
       const value = deserialize('{}');
       expect(value).to.be.an('object');
     });
-    it('turns strings returned by serialize() into objects', function() {
+    it('turns strings returned by serialize() into objects', function () {
       const str = serialize({ foo: 'bar', baz: [1] });
       const value = deserialize(str);
       expect(value.foo).to.equal('bar');

@@ -1,5 +1,3 @@
-'use strict';
-
 import React from 'react';
 
 import SectionNav from '../navigation/section';
@@ -12,7 +10,7 @@ import AddAccount from '../../containers/add-account';
 const Sidebar = () => (
   <div>
     <SectionNav />
-    <BudgetAccountNav/>
+    <BudgetAccountNav />
     <OffBudgetAccountNav />
     <ClosedAccountNav />
     <ToggleSidebar />

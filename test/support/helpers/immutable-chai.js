@@ -1,4 +1,4 @@
-'use strict';
+/* eslint-disable no-underscore-dangle */
 
 import { Assertion } from 'chai';
 import { List } from 'immutable';
@@ -9,7 +9,7 @@ export default function immutableChair(chai, utils) {
   Assertion.addChainableMethod('size', assertListSize, function () {
     utils.flag(this, 'list.size', true);
   });
-};
+}
 
 function assertList() {
   this.assert(

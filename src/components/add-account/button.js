@@ -1,5 +1,3 @@
-'use strict';
-
 import React, { PropTypes } from 'react';
 
 const AddAccountButton = ({ onClick, truncated }) => (
@@ -10,7 +8,7 @@ const AddAccountButton = ({ onClick, truncated }) => (
 
 AddAccountButton.propTypes = {
   onClick: PropTypes.func.isRequired,
-  truncated: PropTypes.bool.isRequired
+  truncated: PropTypes.bool.isRequired,
 };
 
 export default AddAccountButton;
