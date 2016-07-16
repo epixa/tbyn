@@ -18,8 +18,8 @@
   "author": "Court Ewing <court@epixa.com>",
   "license": "MIT",
   "engines": {
-    "node": "^5.9.0",
-    "npm": "^3.7.3"
+    "node": "^6.3.0",
+    "npm": "^3.10.3"
   },
   "dependencies": {
     "bluebird": "^3.3.5",
