@@ -11,8 +11,9 @@
     "build": "webpack",
     "dev": "webpack-dev-server --hot --inline",
     "lint": "eslint .",
-    "test": "mocha -r test/setup -r ignore-styles --compilers js:babel-core/register test/**/*.spec.js",
-    "test:dev": "npm test -- --watch"
+    "test": "npm run lint && npm run test:unit",
+    "test:unit": "mocha -r test/setup -r ignore-styles --compilers js:babel-core/register test/**/*.spec.js",
+    "test:dev": "npm run test:unit -- --watch"
   },
   "author": "Court Ewing <court@epixa.com>",
   "license": "MIT",
