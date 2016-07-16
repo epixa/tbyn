@@ -3,7 +3,7 @@
 module.exports = {
   context: `${__dirname}/src`,
   entry: {
-    javascript: './index.jsx',
+    javascript: './index.js',
     html: './index.html',
   },
   module: {
