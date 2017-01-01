@@ -28,15 +28,15 @@ const mapStateProps = (state) => {
   };
 };
 
-const mapDispatchProps = (dispatch) => ({
+const mapDispatchProps = dispatch => ({
   dateChangeHandler(date) {
-    return datePicker => {
+    return (datePicker) => {
       date.onChange(datePicker.format());
     };
   },
 
   typeChangeHandler(type, onBudget) {
-    return event => {
+    return (event) => {
       const newType = event.target.value;
 
       onBudget.onChange(toOnBudgetValue(newType));

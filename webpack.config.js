@@ -9,15 +9,15 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loaders: ['react-hot', 'babel-loader'],
+        loaders: ['babel-loader'],
       },
       {
         test: /\.html$/,
-        loader: 'file?name=[name].[ext]',
+        loader: 'file-loader?name=[name].[ext]',
       },
       {
         test: /\.css$/,
-        loaders: ['style', 'css'],
+        loaders: ['style-loader', 'css-loader'],
       },
     ],
   },

@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import { toggleSidebar } from '../../actions/sidebar';
 import ToggleSidebar from '../../components/sidebar/toggle';
 
-const mapStateProps = (state) => ({
+const mapStateProps = state => ({
   collapsed: state.sidebar.collapsed,
 });
 
-const mapDispatchProps = (dispatch) => ({
+const mapDispatchProps = dispatch => ({
   onClick() {
     dispatch(toggleSidebar());
   },
