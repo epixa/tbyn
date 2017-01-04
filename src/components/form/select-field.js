@@ -2,29 +2,29 @@ import React, { PropTypes } from 'react';
 
 const SelectField = ({
   children,
-  changeHandler,
-  field,
+  input,
   options,
+  meta,
   allowRenderError = true,
 }) => (
   <div>
     <label>
       {children}
-      <select {...field} onChange={changeHandler(field)}>
+      <select {...input}>
         {Object.keys(options).map(key => (
           <option value={key} key={key}>{options[key]}</option>
         ))}
       </select>
     </label>
-    {allowRenderError && field.touched && field.error && <div>{field.error}</div>}
+    {allowRenderError && meta.touched && meta.error && <div>{meta.error}</div>}
   </div>
 );
 
 SelectField.propTypes = {
   children: PropTypes.node.isRequired,
-  changeHandler: PropTypes.func.isRequired,
   options: PropTypes.object.isRequired,
-  field: PropTypes.object.isRequired,
+  input: PropTypes.object.isRequired,
+  meta: PropTypes.object.isRequired,
   allowRenderError: PropTypes.bool.isRequired,
 };
 

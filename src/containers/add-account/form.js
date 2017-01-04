@@ -1,8 +1,10 @@
 import moment from 'moment';
-import { reduxForm } from 'redux-form';
+
+import { connect } from 'react-redux';
+import { reduxForm, reset } from 'redux-form';
 
 import AddAccountForm from '../../components/add-account/form';
-import { cancelAddAccount, changeAddAccountType, createAccount } from '../../actions/accounts';
+import { cancelAddAccount, createAccount } from '../../actions/accounts';
 
 const validate = ({ balance, date, name, on_budget: onBudget, type }) => {
   const errors = {};
@@ -20,14 +22,6 @@ const validate = ({ balance, date, name, on_budget: onBudget, type }) => {
   return errors;
 };
 
-const mapStateProps = (state) => {
-  const onBudgetValue = toOnBudgetValue(state.addAccount.newAccountType);
-  return {
-    budgetRecommended: onBudgetValue === '1',
-    offBudgetRecommended: onBudgetValue === '0',
-  };
-};
-
 const mapDispatchProps = dispatch => ({
   dateChangeHandler(date) {
     return (datePicker) => {
@@ -35,19 +29,9 @@ const mapDispatchProps = dispatch => ({
     };
   },
 
-  typeChangeHandler(type, onBudget) {
-    return (event) => {
-      const newType = event.target.value;
-
-      onBudget.onChange(toOnBudgetValue(newType));
-      type.onChange(event);
-
-      dispatch(changeAddAccountType(newType));
-    };
-  },
-
   handleCancel() {
     dispatch(cancelAddAccount());
+    dispatch(reset('add-account'));
   },
 
   onSubmit(formData) {
@@ -59,27 +43,16 @@ const mapDispatchProps = dispatch => ({
   },
 });
 
-const toOnBudgetValue = (type) => {
-  if (!type) return '';
-  return budgetTypes.includes(type) ? '1' : '0';
-};
-
-const budgetTypes = [
-  'checking',
-  'savings',
-  'credit_card',
-  'cash',
-  'other_credit',
-  'paypal',
-  'merchant',
-];
-
-export default reduxForm({
+const InitializedAddAccountForm = reduxForm({
   form: 'add-account',
-  fields: ['balance', 'date', 'name', 'on_budget', 'type'],
   initialValues: {
     balance: '0.00',
     date: moment().format(),
   },
   validate,
-}, mapStateProps, mapDispatchProps)(AddAccountForm);
+})(AddAccountForm);
+
+export default connect(
+  null,
+  mapDispatchProps
+)(InitializedAddAccountForm);

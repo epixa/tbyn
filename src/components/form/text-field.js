@@ -1,18 +1,19 @@
 import React, { PropTypes } from 'react';
 
-const TextField = ({ children, field }) => (
+const TextField = ({ children, input, meta }) => (
   <div>
     <label>
       {children}
-      <input type="text" {...field} />
+      <input type="text" {...input} />
     </label>
-    {field.touched && field.error && <div>{field.error}</div>}
+    {meta.touched && meta.error && <div>{meta.error}</div>}
   </div>
 );
 
 TextField.propTypes = {
   children: PropTypes.node.isRequired,
-  field: PropTypes.object.isRequired,
+  input: PropTypes.object.isRequired,
+  meta: PropTypes.object.isRequired,
 };
 
 export default TextField;

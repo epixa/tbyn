@@ -1,6 +1,5 @@
 export const CANCEL_ADD_ACCOUNT = 'CANCEL_ADD_ACCOUNT';
 export const SHOW_ADD_ACCOUNT = 'SHOW_ADD_ACCOUNT';
-export const CHANGE_ADD_ACCOUNT_TYPE = 'CHANGE_ADD_ACCOUNT_TYPE';
 export const RECEIVE_ACCOUNTS = 'RECEIVE_ACCOUNTS';
 export const SELECT_ACCOUNT = 'SELECT_ACCOUNT';
 export const CREATE_ACCOUNT = 'CREATE_ACCOUNT';
@@ -17,13 +16,6 @@ export function cancelAddAccount() {
 export function showAddAccount() {
   return {
     type: SHOW_ADD_ACCOUNT,
-  };
-}
-
-export function changeAddAccountType(newAccountType) {
-  return {
-    newAccountType,
-    type: CHANGE_ADD_ACCOUNT_TYPE,
   };
 }
 

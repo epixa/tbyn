@@ -2,21 +2,27 @@ import moment from 'moment';
 import DatePicker from 'react-datepicker';
 import React, { PropTypes } from 'react';
 
-const DateField = ({ children, changeHandler, field }) => (
+const DateField = ({
+  children,
+  changeHandler,
+  input,
+  meta,
+}) => (
   <div>
     <label>
       {children}
-      <input type="hidden" {...field} />
-      <DatePicker readOnly dateFormat="MM/DD/YYYY" selected={moment(field.value)} onChange={changeHandler(field)} />
+      <input type="hidden" {...input} />
+      <DatePicker readOnly dateFormat="MM/DD/YYYY" selected={moment(input.value)} onChange={changeHandler(input)} />
     </label>
-    {field.touched && field.error && <div>{field.error}</div>}
+    {meta.touched && meta.error && <div>{meta.error}</div>}
   </div>
 );
 
 DateField.propTypes = {
   children: PropTypes.node.isRequired,
   changeHandler: PropTypes.func.isRequired,
-  field: PropTypes.object.isRequired,
+  input: PropTypes.object.isRequired,
+  meta: PropTypes.object.isRequired,
 };
 
 export default DateField;
