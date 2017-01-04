@@ -32,7 +32,7 @@
   padding: 0 10px;
 }
   .sidebar-accountnav-header:before {
-    content: "\25BC \ "; /* ISO 10646 */
+    content: "\25BC"; /* ISO 10646 */
     display: inline-block;
     font-style: normal;
     font-size: 8px;
@@ -55,4 +55,30 @@
 .sidebar-accountnav-notification-count {
   display: inline-block;
   width: 15px;
+}
+
+.sidebar-addaccount-btn {
+  background-color: #30B1DB;
+  border: 1px solid #66CBED;
+  border-radius: 13px;
+  color: #fff;
+  font-size: 13px;
+  outline: none;
+  padding: 5px 10px 5px 5px;
+  text-shadow: 1px 1px 0 black;
+}
+  .sidebar-addaccount-btn:before {
+    content: "\002B";
+    display: inline-block;
+    font-size: 13px;
+    font-style: normal;
+    width: 16px;
+    text-shadow: none;
+  }
+
+.sidebar-toggle-btn {
+  color: #07a;
+  cursor: pointer;
+  float: right;
+  font-size: 10px;
 }

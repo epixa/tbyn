@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 
 const AddAccountButton = ({ onClick, truncated }) => (
-  <button onClick={onClick}>
+  <button onClick={onClick} className="sidebar-addaccount-btn">
     {truncated ? 'Add' : 'Add Account'}
   </button>
 );
