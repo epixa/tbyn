@@ -2,3 +2,57 @@
   float: left;
   width: 300px;
 }
+
+.sidebar-nav {
+  background-color: #07a;
+  border-radius: 5px;
+  color: #fff;
+  margin-bottom: 8px;
+  padding: 8px 0;
+  text-shadow: 1px 1px 0 black;
+}
+
+.sidebar-total {
+  float: right;
+}
+
+.sidebar-sectionnav-link {
+  display: block;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 2;
+  padding: 0 10px;
+}
+
+.sidebar-accountnav-header {
+  font-size: 14px;
+  font-style: italic;
+  font-weight: bold;
+  line-height: 2;
+  padding: 0 10px;
+}
+  .sidebar-accountnav-header:before {
+    content: "\25BC \ "; /* ISO 10646 */
+    display: inline-block;
+    font-style: normal;
+    font-size: 8px;
+    text-shadow: none;
+    vertical-align: middle;
+    width: 15px;
+  }
+
+.sidebar-accountnav-link {
+  display: block;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 2;
+  padding: 0 10px;
+}
+  .sidebar-accountnav-link:hover {
+    background-color: blue;
+  }
+
+.sidebar-accountnav-notification-count {
+  display: inline-block;
+  width: 15px;
+}

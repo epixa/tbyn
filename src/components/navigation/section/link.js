@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 
 const SectionLink = ({ children, onClick }) => (
-  <a onClick={onClick}>
+  <a onClick={onClick} className="sidebar-sectionnav-link">
     {children}
   </a>
 );

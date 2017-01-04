@@ -4,7 +4,7 @@ import AccountNavHeader from '../../../containers/navigation/account/nav-header'
 import AccountNavList from './nav-list';
 
 const AccountNav = ({ accounts, children, total }) => (
-  <nav>
+  <nav className="sidebar-nav sidebar-accountnav">
     <AccountNavHeader total={total}>
       {children}
     </AccountNavHeader>

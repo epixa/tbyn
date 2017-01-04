@@ -1,9 +1,10 @@
 import React, { PropTypes } from 'react';
 
 const AccountLink = ({ account, onClick, total, truncated }) => (
-  <a onClick={onClick}>
+  <a onClick={onClick} className="sidebar-accountnav-link">
+    <span className="sidebar-accountnav-notification-count" />
     {account.get('name')}
-    {!truncated && <span>{total}</span>}
+    {!truncated && <span className="sidebar-total">{total}</span>}
   </a>
 );
 

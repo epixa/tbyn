@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react';
 
 const AccountNavHeader = ({ children, onClick, total, truncated }) => (
-  <h1 onClick={onClick}>
+  <h1 onClick={onClick} className="sidebar-accountnav-header">
     {children}
-    {!truncated && <span>{total}</span>}
+    {!truncated && <span className="sidebar-total">${total}</span>}
   </h1>
 );
 

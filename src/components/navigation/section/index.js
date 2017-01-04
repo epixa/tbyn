@@ -5,7 +5,7 @@ import ReportsLink from '../../../containers/navigation/section/reports-link';
 import AllAccountsLink from '../../../containers/navigation/section/all-accounts-link';
 
 const SectionNav = () => (
-  <div>
+  <nav className="sidebar-nav">
     <BudgetLink>
       Budget
     </BudgetLink>
@@ -15,7 +15,7 @@ const SectionNav = () => (
     </ReportsLink>
 
     <AllAccountsLink />
-  </div>
+  </nav>
 );
 
 export default SectionNav;
