@@ -1,14 +1,15 @@
 import { connect } from 'react-redux';
 
+import { navigateToTransactions } from '../../../actions/navigation';
 import AllAccountsLink from '../../../components/navigation/section/all-accounts-link';
 
 const mapStateProps = state => ({
   truncated: state.navigation.truncated,
 });
 
-const mapDispatchProps = () => ({
+const mapDispatchProps = dispatch => ({
   onClick() {
-    alert('navigate to transactions for all accounts'); // eslint-disable-line no-alert
+    dispatch(navigateToTransactions());
   },
 });
 

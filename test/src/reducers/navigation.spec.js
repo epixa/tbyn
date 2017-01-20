@@ -34,4 +34,43 @@ describe('src/reducers/navigation', function () {
       expect(state).to.deep.equal(stateAfter);
     });
   });
+
+  context('SHOW_BUDGET', function () {
+    it('sets currentPanel to "budget"', function () {
+      const action = { type: 'SHOW_BUDGET' };
+      const stateBefore = { currentPanel: 'something else' };
+      const stateAfter = { currentPanel: 'budget' };
+
+      deepFreeze(action, stateBefore);
+
+      const state = reducer(stateBefore, action);
+      expect(state).to.deep.equal(stateAfter);
+    });
+  });
+
+  context('SHOW_REPORTS', function () {
+    it('sets currentPanel to "reports"', function () {
+      const action = { type: 'SHOW_REPORTS' };
+      const stateBefore = { currentPanel: 'something else' };
+      const stateAfter = { currentPanel: 'reports' };
+
+      deepFreeze(action, stateBefore);
+
+      const state = reducer(stateBefore, action);
+      expect(state).to.deep.equal(stateAfter);
+    });
+  });
+
+  context('SHOW_TRANSACTIONS', function () {
+    it('sets currentPanel to "transactions"', function () {
+      const action = { type: 'SHOW_TRANSACTIONS' };
+      const stateBefore = { currentPanel: 'something else' };
+      const stateAfter = { currentPanel: 'transactions' };
+
+      deepFreeze(action, stateBefore);
+
+      const state = reducer(stateBefore, action);
+      expect(state).to.deep.equal(stateAfter);
+    });
+  });
 });

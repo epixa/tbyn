@@ -1,10 +1,11 @@
 import { connect } from 'react-redux';
 
+import { navigateToBudget } from '../../../actions/navigation';
 import SectionLink from '../../../components/navigation/section/link';
 
-const mapDispatchProps = () => ({
+const mapDispatchProps = dispatch => ({
   onClick() {
-    alert('navigate to budget'); // eslint-disable-line no-alert
+    dispatch(navigateToBudget());
   },
 });
 
