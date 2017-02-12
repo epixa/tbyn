@@ -1,8 +1,12 @@
-#sidebar {
+.sidebar {
   flex: 0 0 auto;
   margin: 8px 0 8px 8px;
   overflow: scroll;
   width: 300px;
+}
+
+.sidebar-collapsed {
+  width: 150px;
 }
 
 .sidebar-nav {

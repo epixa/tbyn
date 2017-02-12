@@ -4,7 +4,7 @@ import SectionLink from './link';
 
 const AllAccountsLink = ({ onClick, truncated }) => (
   <SectionLink onClick={onClick}>
-    {truncated ? 'All' : 'All Accounts'}
+    {truncated ? 'Accounts' : 'All Accounts'}
   </SectionLink>
 );
 

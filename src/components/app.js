@@ -2,7 +2,7 @@ import './app.css';
 
 import React from 'react';
 
-import Sidebar from './sidebar';
+import Sidebar from '../containers/sidebar';
 import Workarea from './workarea';
 
 const App = () => (
