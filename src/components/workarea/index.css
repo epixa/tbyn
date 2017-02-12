@@ -1,4 +1,6 @@
 #workarea {
-  float: left;
-  width: 800px;
+  background-color: #fff;
+  border-radius: 5px;
+  flex: 1 1 auto;
+  margin: 8px;
 }

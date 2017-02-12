@@ -1,10 +1,12 @@
+import './app.css';
+
 import React from 'react';
 
 import Sidebar from './sidebar';
 import Workarea from './workarea';
 
 const App = () => (
-  <div>
+  <div className="app">
     <Sidebar />
     <Workarea />
   </div>
