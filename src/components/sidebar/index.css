@@ -23,6 +23,7 @@
 }
 
 .sidebar-sectionnav-link {
+  cursor: pointer;
   display: block;
   font-size: 16px;
   font-weight: bold;
@@ -48,6 +49,7 @@
   }
 
 .sidebar-accountnav-link {
+  cursor: pointer;
   display: block;
   font-size: 14px;
   font-weight: normal;
@@ -55,7 +57,7 @@
   padding: 0 10px;
 }
   .sidebar-accountnav-link:hover {
-    background-color: blue;
+    background-color: #005c84;
   }
 
 .sidebar-accountnav-notification-count {
@@ -68,6 +70,7 @@
   border: 1px solid #66CBED;
   border-radius: 13px;
   color: #fff;
+  cursor: pointer;
   font-size: 13px;
   outline: none;
   padding: 5px 10px 5px 5px;
