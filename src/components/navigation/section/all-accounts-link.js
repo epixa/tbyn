@@ -1,13 +1,12 @@
 import React, { PropTypes } from 'react';
 
 import SectionLink from './link';
-
-import { formatAsDollars } from '../../../../lib/numbers/currency';
+import Currency from '../../numbers/currency';
 
 const AllAccountsLink = ({ total, onClick, truncated }) => (
   <SectionLink onClick={onClick}>
     {truncated ? 'Accounts' : 'All Accounts'}
-    {!truncated && <span className="sidebar-total">{formatAsDollars(total)}</span>}
+    {!truncated && <span className="sidebar-total"><Currency amount={total} withDollarSign /></span>}
   </SectionLink>
 );
 

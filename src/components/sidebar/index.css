@@ -22,6 +22,10 @@
   float: right;
 }
 
+.sidebar .currency-negative {
+  color: #f99;
+}
+
 .sidebar-sectionnav-link {
   cursor: pointer;
   display: block;
