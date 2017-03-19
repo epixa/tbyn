@@ -15,10 +15,10 @@ describe('<AllAccountsLink/>', () => {
   });
   it('includes total in dollars when not truncated', () => {
     const component = mount(<AllAccountsLink total={6} />);
-    expect(component).to.contain.text('$6');
+    expect(component).to.contain.text('$0.06');
   });
   it('does not include total when truncated', () => {
     const component = mount(<AllAccountsLink total={6} truncated />);
-    expect(component).not.to.contain.text('$6');
+    expect(component).not.to.contain.text('$0.06');
   });
 });
