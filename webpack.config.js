@@ -1,5 +1,7 @@
+const path = require('path');
+
 module.exports = {
-  context: `${__dirname}/src`,
+  context: path.resolve('src'),
   entry: {
     javascript: './index.js',
     html: './index.html',
@@ -26,6 +28,11 @@ module.exports = {
     path: `${__dirname}/dist`,
   },
   resolve: {
+    modulesDirectories: [
+      path.resolve('node_modules'),
+      path.resolve('src'),
+      path.resolve('lib'),
+    ],
     extensions: ['', '.webpack.js', '.web.js', '.js', '.jsx'],
   },
 };
