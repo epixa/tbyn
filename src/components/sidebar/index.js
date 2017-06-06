@@ -7,7 +7,7 @@ import BudgetAccountNav from '../../containers/navigation/budget-account';
 import OffBudgetAccountNav from '../../containers/navigation/off-budget-account';
 import ClosedAccountNav from '../../containers/navigation/closed-account';
 import ToggleSidebar from '../../containers/sidebar/toggle';
-import AddAccount from '../../containers/add-account';
+import AddAccountButton from '../../containers/add-account/button';
 
 const Sidebar = ({ collapsed }) => {
   const classes = ['sidebar'];
@@ -21,7 +21,7 @@ const Sidebar = ({ collapsed }) => {
       <OffBudgetAccountNav />
       <ClosedAccountNav />
       <ToggleSidebar />
-      <AddAccount />
+      <AddAccountButton />
     </div>
   );
 };
