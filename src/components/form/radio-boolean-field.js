@@ -5,16 +5,16 @@ const RadioBooleanField = ({
   input,
   meta,
 }) => (
-  <div>
-    <label>
+  <div className="radio-boolean-field">
+    <label className="radio-boolean-option">
       <input type="radio" {...input} value="1" checked={input.value === '1'} />
       {affirmative}
     </label>
-    <label>
+    <label className="radio-boolean-option">
       <input type="radio" {...input} value="0" checked={input.value === '0'} />
       {negative}
     </label>
-    {meta.touched && meta.error && <div>{meta.error}</div>}
+    {meta.touched && meta.error && <div className="form-field-error">{meta.error}</div>}
   </div>
 );
 

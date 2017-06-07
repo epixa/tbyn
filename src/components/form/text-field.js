@@ -3,10 +3,10 @@ import React, { PropTypes } from 'react';
 const TextField = ({ children, input, meta }) => (
   <div>
     <label>
-      {children}
+      <span className="field-label">{children}</span>
       <input type="text" {...input} />
     </label>
-    {meta.touched && meta.error && <div>{meta.error}</div>}
+    {meta.touched && meta.error && <div className="form-field-error">{meta.error}</div>}
   </div>
 );
 

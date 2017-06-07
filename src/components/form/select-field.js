@@ -9,14 +9,14 @@ const SelectField = ({
 }) => (
   <div>
     <label>
-      {children}
+      <span className="field-label">{children}</span>
       <select {...input}>
         {Object.keys(options).map(key => (
           <option value={key} key={key}>{options[key]}</option>
         ))}
       </select>
     </label>
-    {allowRenderError && meta.touched && meta.error && <div>{meta.error}</div>}
+    {allowRenderError && meta.touched && meta.error && <div className="form-field-error">{meta.error}</div>}
   </div>
 );
 

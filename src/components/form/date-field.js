@@ -10,11 +10,13 @@ const DateField = ({
 }) => (
   <div>
     <label>
-      {children}
+      <span className="field-label">{children}</span>
       <input type="hidden" {...input} />
-      <DatePicker readOnly dateFormat="MM/DD/YYYY" selected={moment(input.value)} onChange={changeHandler(input)} />
+      <div className="date-field-container">
+        <DatePicker readOnly dateFormat="MM/DD/YYYY" selected={moment(input.value)} onChange={changeHandler(input)} />
+      </div>
     </label>
-    {meta.touched && meta.error && <div>{meta.error}</div>}
+    {meta.touched && meta.error && <div className="form-field-error">{meta.error}</div>}
   </div>
 );
 

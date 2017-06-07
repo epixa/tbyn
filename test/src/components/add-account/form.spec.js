@@ -22,17 +22,11 @@ describe('<AddAccountForm/>', () => {
     expect(args.handleSubmit).to.have.been.calledOnce;
   });
 
-  it('includes error message when submit fails', () => {
-    args.submitFailed = true;
-    const component = shallow(<AddAccountForm {...args} />);
-    expect(component).to.contain('There was an error with your form submission');
-  });
-
   it('has an enabled submit button', () => {
     const component = shallow(<AddAccountForm {...args} />);
     const button = component.find('button[type="submit"]');
     expect(button).not.to.be.disabled();
-    expect(button).to.be.contain('Submit');
+    expect(button).to.be.contain('Create account');
   });
 
   it('disables submit while submitting', () => {
@@ -40,6 +34,6 @@ describe('<AddAccountForm/>', () => {
     const component = shallow(<AddAccountForm {...args} />);
     const button = component.find('button[type="submit"]');
     expect(button).to.be.disabled();
-    expect(button).to.be.contain('Submitting...');
+    expect(button).to.be.contain('Creating account...');
   });
 });

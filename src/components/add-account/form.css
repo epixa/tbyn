@@ -1,0 +1,117 @@
+.form-vertical-rhythm {
+  margin-bottom: 25px;
+}
+
+.add-account-form {
+  color: #444;
+  font-size: 15px;
+}
+
+.add-account-form .field-label {
+  display: block;
+  padding-bottom: 2px;
+}
+
+.add-account-form input[type='text'] {
+  border: 1px solid #999;
+  border-radius: 4px;
+  box-sizing: border-box;
+  padding: 5px;
+  width: 100%;
+  font-size: 15px;
+}
+
+.add-account-form select {
+  border: 1px solid #999;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 15px;
+  padding: 5px;
+}
+
+.add-account-form select option {
+  padding: 5px;
+  margin: 5px;
+}
+
+.radio-boolean-field label {
+  display: block;
+}
+
+.radio-boolean-option:not(:first-child) {
+  margin-top: 10px;
+}
+
+.radio-boolean-field input[type='radio'] {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.radio-boolean-field strong {
+  font-weight: bolder;
+}
+
+.date-field-container > div {
+  width: 100%;
+}
+
+.add-account-form-balance-fields {
+  border: none;
+}
+
+.add-account-form-current-balance {
+  box-sizing: border-box;
+  display: inline-block;
+  padding-right: 20px;
+  vertical-align: top;
+  width: 50%;
+}
+
+.add-account-form-balance-date {
+  box-sizing: border-box;
+  display: inline-block;
+  vertical-align: top;
+  width: 50%;
+}
+
+.form-field-error {
+  color: red;
+  font-size: 12px;
+  line-height: 1.5;
+  position: absolute;
+}
+
+.form-header {
+  margin-bottom: 20px;
+}
+
+.form-header h1 {
+  font-weight: 400;
+  font-size: 24px;
+  margin: 0;
+  padding: 0;
+}
+
+.form-buttons {
+  text-align: right;
+}
+
+.form-buttons button {
+  background-color: #f0f0f0;
+  border: 1px solid #999;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 16px;
+  margin-left: 5px;
+  outline: none;
+  padding: 5px 10px;
+}
+
+.form-buttons button:hover {
+  background-color: #fff;
+}
+
+.form-buttons button:active {
+  background-color: #bbb;
+}
