@@ -12,9 +12,12 @@ import TextField from '../form/text-field';
 const AddAccountForm = ({
   handleCancel,
   handleSubmit,
+  recommendedAccountType,
   submitting,
   submitFailed,
   dateChangeHandler,
+  change,
+  typeChangeHandler,
 }) => (
   <form onSubmit={handleSubmit} className="add-account-form">
     <div className="form-header">
@@ -46,6 +49,7 @@ const AddAccountForm = ({
         name="type"
         allowRenderError={submitFailed}
         component={SelectField}
+        onChange={typeChangeHandler(change)}
         options={{
           '': 'Select an Account Type...',
           checking: 'Checking',
@@ -69,11 +73,21 @@ const AddAccountForm = ({
       <Field name="on_budget" component={RadioBooleanField}>
         <span>
           <strong>Budget account</strong>
-          <span> - This account should affect my budget</span>
+          <span>
+            &nbsp;- This account should affect my budget
+            {recommendedAccountType === 'on_budget' && (
+              <span className="radio-boolean-supplemental"> (recommended)</span>
+            )}
+          </span>
         </span>
         <span>
           <strong>Off-Budget</strong>
-          <span> - This account should not affect my budget</span>
+          <span>
+            &nbsp;- This account should not affect my budget
+            {recommendedAccountType === 'off_budget' && (
+              <span className="radio-boolean-supplemental"> (recommended)</span>
+            )}
+          </span>
         </span>
       </Field>
     </div>
@@ -89,12 +103,19 @@ const AddAccountForm = ({
   </form>
 );
 
+AddAccountForm.defaultProps = {
+  recommendedAccountType: null,
+};
+
 AddAccountForm.propTypes = {
   handleCancel: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  recommendedAccountType: PropTypes.string,
   submitting: PropTypes.bool.isRequired,
   submitFailed: PropTypes.bool.isRequired,
   dateChangeHandler: PropTypes.func.isRequired,
+  change: PropTypes.func.isRequired,
+  typeChangeHandler: PropTypes.func.isRequired,
 };
 
 export default AddAccountForm;

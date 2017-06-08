@@ -1,7 +1,7 @@
 import moment from 'moment';
 
 import { connect } from 'react-redux';
-import { reduxForm, reset } from 'redux-form';
+import { formValueSelector, reduxForm, reset } from 'redux-form';
 
 import AddAccountForm from '../../components/add-account/form';
 import { cancelAddAccount, createAccount } from '../../actions/accounts';
@@ -22,6 +22,23 @@ const validate = ({ balance, date, name, on_budget: onBudget, type }) => {
   return errors;
 };
 
+const offBudgetTypes = ['investment', 'mortgage', 'other_asset', 'other_loan'];
+
+const formSelector = formValueSelector('addAccount');
+
+const mapStateProps = (state) => {
+  const type = formSelector(state, 'type');
+  if (type) {
+    const recommendedOffBudget = offBudgetTypes.includes(type);
+    return {
+      recommendedAccountType: recommendedOffBudget
+        ? 'off_budget'
+        : 'on_budget'
+    };
+  }
+  return {};
+};
+
 const mapDispatchProps = dispatch => ({
   dateChangeHandler(date) {
     return (datePicker) => {
@@ -31,7 +48,7 @@ const mapDispatchProps = dispatch => ({
 
   handleCancel() {
     dispatch(cancelAddAccount());
-    dispatch(reset('add-account'));
+    dispatch(reset('addAccount'));
   },
 
   onSubmit(formData) {
@@ -41,10 +58,20 @@ const mapDispatchProps = dispatch => ({
     };
     dispatch(createAccount(data));
   },
+
+  typeChangeHandler(change) {
+    return (event, value) => {
+      if (value) {
+        change('on_budget', offBudgetTypes.includes(value) ? '0' : '1');
+      } else {
+        change('on_budget', '');
+      }
+    };
+  },
 });
 
 const InitializedAddAccountForm = reduxForm({
-  form: 'add-account',
+  form: 'addAccount',
   initialValues: {
     balance: '0.00',
     date: moment().format(),
@@ -53,6 +80,6 @@ const InitializedAddAccountForm = reduxForm({
 })(AddAccountForm);
 
 export default connect(
-  null,
+  mapStateProps,
   mapDispatchProps
 )(InitializedAddAccountForm);

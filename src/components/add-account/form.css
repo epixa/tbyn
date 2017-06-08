@@ -36,6 +36,11 @@
 
 .radio-boolean-field label {
   display: block;
+  font-size: 14px;
+}
+
+.radio-boolean-supplemental {
+  font-size: 12px;
 }
 
 .radio-boolean-option:not(:first-child) {
@@ -44,7 +49,7 @@
 
 .radio-boolean-field input[type='radio'] {
   display: inline-block;
-  margin-right: 10px;
+  margin-right: 8px;
 }
 
 .radio-boolean-field strong {
