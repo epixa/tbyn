@@ -5,8 +5,12 @@ import Currency from '../../numbers/currency';
 const AccountLink = ({ account, onClick, total, truncated }) => (
   <a onClick={onClick} className="sidebar-accountnav-link">
     <span className="sidebar-accountnav-notification-count" />
-    {account.get('name')}
-    {!truncated && <span className="sidebar-total"><Currency amount={total} /></span>}
+    <span className="sidebar-accountnav-account-name">{account.get('name')}</span>
+    {!truncated && (
+      <span className="sidebar-total">
+        <Currency amount={total} />
+      </span>
+    )}
   </a>
 );
 

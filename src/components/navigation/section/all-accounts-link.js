@@ -5,8 +5,12 @@ import Currency from '../../numbers/currency';
 
 const AllAccountsLink = ({ total, onClick, truncated }) => (
   <SectionLink onClick={onClick}>
-    {truncated ? 'Accounts' : 'All Accounts'}
-    {!truncated && <span className="sidebar-total"><Currency amount={total} withDollarSign /></span>}
+    <span className="sidebar-sectionnav-allaccounts-name">{truncated ? 'Accounts' : 'All Accounts'}</span>
+    {!truncated && (
+      <span className="sidebar-total sidebar-sectionnav-allaccounts-total">
+        <Currency amount={total} withDollarSign />
+      </span>
+    )}
   </SectionLink>
 );
 

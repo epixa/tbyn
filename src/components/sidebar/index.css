@@ -18,55 +18,89 @@
   text-shadow: 1px 1px 0 black;
 }
 
-.sidebar-total {
-  float: right;
-}
-
 .sidebar .currency-negative {
   color: #f99;
 }
 
 .sidebar-sectionnav-link {
   cursor: pointer;
-  display: block;
+  display: flex;
   font-size: 16px;
   font-weight: bold;
   line-height: 2;
   padding: 0 10px;
+  white-space: nowrap;
+}
+
+.sidebar-sectionnav-allaccounts-name {
+  flex: 1 1;
 }
 
 .sidebar-accountnav-header {
+  display: flex;
   font-size: 14px;
   font-style: italic;
   font-weight: bold;
   line-height: 2;
+  overflow: hidden;
   padding: 0 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
   .sidebar-accountnav-header:before {
     content: "\25BC"; /* ISO 10646 */
-    display: inline-block;
+    flex: 0 0 15px;
+    margin-top: 6px;
     font-style: normal;
     font-size: 8px;
     text-shadow: none;
-    vertical-align: middle;
     width: 15px;
   }
 
+.sidebar-accountnav-header-name {
+  flex: 1 1;
+}
+
 .sidebar-accountnav-link {
   cursor: pointer;
-  display: block;
+  display: flex;
   font-size: 14px;
   font-weight: normal;
   line-height: 2;
+  overflow: hidden;
   padding: 0 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
   .sidebar-accountnav-link:hover {
     background-color: #005c84;
   }
 
 .sidebar-accountnav-notification-count {
-  display: inline-block;
   width: 15px;
+  flex: 0 0 15px;
+}
+
+.sidebar-accountnav-account-name {
+  flex: 1 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sidebar-total {
+  padding-left: 5px;
+}
+.sidebar-accountnav-header-total {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-right: 2px;
+}
+.sidebar-sectionnav-allaccounts-total {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .sidebar-addaccount-btn {
