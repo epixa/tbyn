@@ -38,6 +38,7 @@
 }
 
 .sidebar-accountnav-header {
+  cursor: pointer;
   display: flex;
   font-size: 14px;
   font-style: italic;
@@ -56,6 +57,9 @@
     font-size: 8px;
     text-shadow: none;
     width: 15px;
+  }
+  .sidebar-accountnav-header-collapsed:before {
+    content: "\25BA";
   }
 
 .sidebar-accountnav-header-name {

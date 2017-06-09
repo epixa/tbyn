@@ -2,14 +2,9 @@ import { connect } from 'react-redux';
 
 import AccountNavHeader from '../../../components/navigation/account/nav-header';
 
-const mapStateProps = state => ({
+const mapStateProps = (state, props) => ({
+  collapsed: state.navigation.collapsed[props.type],
   truncated: state.navigation.truncated,
 });
 
-const mapDispatchProps = () => ({
-  onClick() {
-    alert('clicked header'); // eslint-disable-line no-alert
-  },
-});
-
-export default connect(mapStateProps, mapDispatchProps)(AccountNavHeader);
+export default connect(mapStateProps)(AccountNavHeader);

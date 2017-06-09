@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 import AccountNav from '../../containers/navigation/account/nav';
 
 const BudgetAccountNav = ({ accounts, truncated }) => (
-  <AccountNav accounts={accounts}>
+  <AccountNav accounts={accounts} type="on_budget">
     {truncated ? 'Budget Accts' : 'Budget Accounts'}
   </AccountNav>
 );

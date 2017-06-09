@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 import AccountNav from '../../containers/navigation/account/nav';
 
 const ClosedAccountNav = ({ accounts, truncated }) => (
-  <AccountNav accounts={accounts}>
+  <AccountNav accounts={accounts} type="closed">
     {truncated ? 'Closed Accts' : 'Closed Accounts'}
   </AccountNav>
 );
