@@ -19,3 +19,8 @@ body {
   overflow: hidden;
   flex-direction: column;
 }
+
+::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
